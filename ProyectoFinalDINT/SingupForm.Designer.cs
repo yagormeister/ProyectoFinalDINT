@@ -46,7 +46,7 @@
             this.lbNewUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNewUser.Location = new System.Drawing.Point(12, 9);
             this.lbNewUser.Name = "lbNewUser";
-            this.lbNewUser.Size = new System.Drawing.Size(634, 76);
+            this.lbNewUser.Size = new System.Drawing.Size(635, 76);
             this.lbNewUser.TabIndex = 0;
             this.lbNewUser.Text = "Crear nuevo usuario";
             // 
@@ -106,6 +106,7 @@
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnCreate
             // 
@@ -115,6 +116,7 @@
             this.btnCreate.TabIndex = 8;
             this.btnCreate.Text = "Crear";
             this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // lbNewUserErrorPass
             // 

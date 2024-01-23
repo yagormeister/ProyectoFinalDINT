@@ -73,6 +73,7 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Iniciar sesion";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // tbPassword
             // 

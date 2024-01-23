@@ -22,5 +22,12 @@ namespace ProyectoFinalDINT
             SingupForm singupForm = new SingupForm();
             singupForm.ShowDialog();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            PatientsForm pat = new PatientsForm();
+            pat.ShowDialog();
+            
+        }
     }
 }

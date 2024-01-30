@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,17 +33,39 @@ namespace ProyectoFinalDINT
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            Boolean correctPass=false;
-           
-                if (this.tbNewUserPassword.Text != this.tbNewUserRepeated.Text)
-                {
-                    this.lbNewUserErrorPass.Visible = true;
+            DatabaseManager db = new DatabaseManager();
+            db.Connect();
+            String user = tbNewUserName.Text;
+            String pass = tbNewUserPassword.Text;
+            String repeatedPass = tbNewUserRepeated.Text;
+
+            // Comprobar si los campos están vacíos
+            if (String.IsNullOrWhiteSpace(user) || String.IsNullOrWhiteSpace(pass))
+            {
+                // Mostrar error: los campos no deben estar vacíos
+                return;
+            }
+
+            // Comprobar si las contraseñas coinciden
+            if (pass != repeatedPass)
+            {
+                this.lbNewUserErrorPass.Visible = true;
+                return; // No continuar si las contraseñas no coinciden
             }
             else
             {
                 this.lbNewUserErrorPass.Visible = false;
             }
-                    
+
+            // Prevenir la inyección SQL utilizando parámetros
+            String query = "INSERT INTO UsuariosPrograma (username, password) VALUES (@user, @pass)";
+            MySqlCommand cmd = new MySqlCommand(query, db.Connection);
+            cmd.Parameters.AddWithValue("@user", user);
+            cmd.Parameters.AddWithValue("@pass", pass); // Considera usar hash para la contraseña
+
+            db.ExecuteNonQuery(cmd);
+            db.Disconnect();
         }
+
     }
 }

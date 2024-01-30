@@ -2,6 +2,7 @@
 {
     partial class Login
     {
+
         /// <summary>
         /// Variable del diseñador necesaria.
         /// </summary>
@@ -11,6 +12,9 @@
         /// Limpiar los recursos que se estén usando.
         /// </summary>
         /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        /// 
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -19,6 +23,8 @@
             }
             base.Dispose(disposing);
         }
+
+
 
         #region Código generado por el Diseñador de Windows Forms
 

@@ -26,8 +26,27 @@ namespace ProyectoFinalDINT
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            PatientsForm pat = new PatientsForm();
-            pat.ShowDialog();
+            DatabaseManager db = new DatabaseManager();
+            db.Connect();
+            String usuarioLeido = db.SeleccionarPrimerResultado(db.LeerUsuario(tbName.Text));
+            String passLeida = db.SeleccionarPrimerResultado(db.LeerPasswordDeUsuario(tbPassword.Text));
+            if (!String.IsNullOrWhiteSpace(usuarioLeido))
+            {
+                if (tbName.Equals(usuarioLeido) && tbPassword.Equals(passLeida))
+                {
+                    PatientsForm pat = new PatientsForm();
+                    pat.ShowDialog();
+                    this.Close();
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("EL usuario no existe!");
+            }
+            db.Disconnect();
+
+
             
         }
     }

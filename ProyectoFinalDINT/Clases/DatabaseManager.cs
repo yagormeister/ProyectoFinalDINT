@@ -1,6 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 public class DatabaseManager
 {
@@ -19,6 +21,15 @@ public class DatabaseManager
 
         connection = new MySqlConnection(builder.ToString());
     }
+    public DatabaseManager()
+    {
+        builder = new MySqlConnectionStringBuilder();
+        builder.Server = "localhost";
+        builder.UserID = "root";
+        builder.Password = "";
+        builder.Database = "mindfieldvr";
+        connection = new MySqlConnection(builder.ToString());
+    }
 
     //METODOS DE CONEXION
 
@@ -32,6 +43,7 @@ public class DatabaseManager
         catch (Exception ex)
         {
             Console.WriteLine($"Error al conectar con la base de datos: {ex.Message}");
+            MessageBox.Show("Error en la base de datos!!");
         }
     }
 
@@ -84,6 +96,31 @@ public class DatabaseManager
         }
         return dataTable;
     }
+    public List<string> ConvertirDataTableALista(DataTable dataTable)
+    {
+        List<string> lista = new List<string>();
+
+        foreach (DataRow row in dataTable.Rows)
+        {
+            // Asumiendo que quieres convertir la primera columna en string
+            lista.Add(row[0].ToString());
+        }
+
+        return lista;
+    }
+
+    public string SeleccionarPrimerResultado(DataTable dataTable)
+    {
+        if (dataTable.Rows.Count > 0)
+        {
+            // Obtiene el primer valor de la primera columna
+            return dataTable.Rows[0][0].ToString();
+        }
+
+        return null; // O maneja este caso según sea necesario
+    }
+
+
 
 
     // CRUD Operations para Pacientes
@@ -140,11 +177,26 @@ public class DatabaseManager
         });
     }
 
-   public DataTable LeerUsuarios()
+    public DataTable LeerUsuario(string usuario)
     {
-        string query = "SELECT username, password FROM UsuariosPrograma";
-        return ExecuteQuery(query);
+        string query = "SELECT username FROM UsuariosPrograma WHERE username = @usuario";
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@usuario", usuario)
+        };
+        return ExecuteQuery(query, parameters);
     }
+
+    public DataTable LeerPasswordDeUsuario(string username)
+    {
+        string query = "SELECT password FROM UsuariosPrograma WHERE username = @username";
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@username", username)
+        };
+        return ExecuteQuery(query, parameters);
+    }
+
 
     public void ActualizarUsuario(string username, string newPassword)
     {
@@ -205,43 +257,43 @@ public class DatabaseManager
 
     //VIDEOS
     public void CrearVideo(string titulo, TimeSpan duracion, string categoria, string descripcion)
-{
-    string query = "INSERT INTO Videos (titulo, duracion, categoria, descripcion) VALUES (@titulo, @duracion, @categoria, @descripcion)";
-    ExecuteNonQuery(query, new MySqlParameter[]
     {
+        string query = "INSERT INTO Videos (titulo, duracion, categoria, descripcion) VALUES (@titulo, @duracion, @categoria, @descripcion)";
+        ExecuteNonQuery(query, new MySqlParameter[]
+        {
         new MySqlParameter("@titulo", titulo),
         new MySqlParameter("@duracion", duracion.ToString()),
         new MySqlParameter("@categoria", categoria),
         new MySqlParameter("@descripcion", descripcion)
-    });
-}
+        });
+    }
 
-public DataTable LeerVideos()
-{
-    string query = "SELECT video_id, titulo, duracion, categoria, descripcion FROM Videos";
-    return ExecuteQuery(query);
-}
-
-public void ActualizarVideo(int videoId, string nuevoTitulo, TimeSpan nuevaDuracion, string nuevaCategoria, string nuevaDescripcion)
-{
-    string query = "UPDATE Videos SET titulo = @nuevoTitulo, duracion = @nuevaDuracion, categoria = @nuevaCategoria, descripcion = @nuevaDescripcion WHERE video_id = @videoId";
-    ExecuteNonQuery(query, new MySqlParameter[]
+    public DataTable LeerVideos()
     {
+        string query = "SELECT video_id, titulo, duracion, categoria, descripcion FROM Videos";
+        return ExecuteQuery(query);
+    }
+
+    public void ActualizarVideo(int videoId, string nuevoTitulo, TimeSpan nuevaDuracion, string nuevaCategoria, string nuevaDescripcion)
+    {
+        string query = "UPDATE Videos SET titulo = @nuevoTitulo, duracion = @nuevaDuracion, categoria = @nuevaCategoria, descripcion = @nuevaDescripcion WHERE video_id = @videoId";
+        ExecuteNonQuery(query, new MySqlParameter[]
+        {
         new MySqlParameter("@videoId", videoId),
         new MySqlParameter("@nuevoTitulo", nuevoTitulo),
         new MySqlParameter("@nuevaDuracion", nuevaDuracion.ToString()),
         new MySqlParameter("@nuevaCategoria", nuevaCategoria),
         new MySqlParameter("@nuevaDescripcion", nuevaDescripcion)
-    });
-}
+        });
+    }
 
-public void EliminarVideo(int videoId)
-{
-    string query = "DELETE FROM Videos WHERE video_id = @videoId";
-    ExecuteNonQuery(query, new MySqlParameter[]
+    public void EliminarVideo(int videoId)
     {
+        string query = "DELETE FROM Videos WHERE video_id = @videoId";
+        ExecuteNonQuery(query, new MySqlParameter[]
+        {
         new MySqlParameter("@videoId", videoId)
-    });
-}
+        });
+    }
 
 }

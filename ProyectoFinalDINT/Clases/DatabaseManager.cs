@@ -20,6 +20,8 @@ public class DatabaseManager
         connection = new MySqlConnection(builder.ToString());
     }
 
+    //METODOS DE CONEXION
+
     public void Connect()
     {
         try
@@ -41,6 +43,7 @@ public class DatabaseManager
             Console.WriteLine("Conexión a la base de datos cerrada.");
         }
     }
+    //METODOS GENERICOS
 
     public void ExecuteNonQuery(string query, MySqlParameter[] parameters = null)
     {
@@ -58,26 +61,6 @@ public class DatabaseManager
             }
         }
     }
-
-    /* public DataTable ExecuteQuery(string query, MySqlParameter[] parameters = null)
-     {
-         DataTable dataTable = new DataTable();
-         using (MySqlCommand cmd = connection.CreateCommand())
-         {
-             cmd.CommandText = query;
-             if (parameters != null) cmd.Parameters.AddRange(parameters);
-             try
-             {
-                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                 adapter.Fill(dataTable);
-             }
-             catch (Exception ex)
-             {
-                 Console.WriteLine($"Error al ejecutar la consulta: {ex.Message}");
-             }
-         }
-         return dataTable;
-     }*/
     public DataTable ExecuteQuery(string query, MySqlParameter[] parameters = null)
     {
         DataTable dataTable = new DataTable();
@@ -117,9 +100,7 @@ public class DatabaseManager
         });
     }
 
-    // Agregar más métodos para operaciones CRUD de NotasClinicas y Videos
-
-    // Métodos CRUD para UsuariosPrograma (ya incluidos)
+    // Métodos CRUD para UsuariosPrograma
     public void CrearUsuario(string username, string password)
     {
         string query = "INSERT INTO UsuariosPrograma (username, password) VALUES (@username, @password)";
@@ -129,11 +110,11 @@ public class DatabaseManager
         });
     }
 
-   /* public DataTable LeerUsuarios()
+   public DataTable LeerUsuarios()
     {
         string query = "SELECT username, password FROM UsuariosPrograma";
         return ExecuteQuery(query);
-    }*/
+    }
 
     public void ActualizarUsuario(string username, string newPassword)
     {
@@ -151,6 +132,8 @@ public class DatabaseManager
             new MySqlParameter("@username", username)
         });
     }
+
+    //NOTAS CLINICAS
 
     public void CrearNotaClinica(int pacienteId, string contenido)
     {
@@ -189,6 +172,8 @@ public class DatabaseManager
         });
     }
 
+
+    //VIDEOS
     public void CrearVideo(string titulo, TimeSpan duracion, string categoria, string descripcion)
 {
     string query = "INSERT INTO Videos (titulo, duracion, categoria, descripcion) VALUES (@titulo, @duracion, @categoria, @descripcion)";

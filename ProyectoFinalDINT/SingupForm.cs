@@ -33,7 +33,7 @@ namespace ProyectoFinalDINT
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            DatabaseManager db = new DatabaseManager();
+            DatabaseManager db = new DatabaseManager("localhost","dint","root","");
             db.Connect();
             String user = tbNewUserName.Text;
             String pass = tbNewUserPassword.Text;
@@ -55,16 +55,15 @@ namespace ProyectoFinalDINT
             else
             {
                 this.lbNewUserErrorPass.Visible = false;
+                String query = "INSERT INTO UsuariosPrograma (username, password) VALUES (@user, @pass)";
+                db.CrearUsuario(user, pass);
+                db.Disconnect();
+                this.DialogResult = DialogResult.OK;
+
             }
 
             // Prevenir la inyección SQL utilizando parámetros
-            String query = "INSERT INTO UsuariosPrograma (username, password) VALUES (@user, @pass)";
-            MySqlCommand cmd = new MySqlCommand(query, db.Connection);
-            cmd.Parameters.AddWithValue("@user", user);
-            cmd.Parameters.AddWithValue("@pass", pass); // Considera usar hash para la contraseña
-
-            db.ExecuteNonQuery(cmd);
-            db.Disconnect();
+            
         }
 
     }

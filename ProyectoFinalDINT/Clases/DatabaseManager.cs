@@ -100,6 +100,36 @@ public class DatabaseManager
         });
     }
 
+    public DataTable LeerPacientes()
+    {
+        string query = "SELECT paciente_id, nombre, apellidos, dni, fecha_nacimiento, comentario FROM Pacientes";
+        return ExecuteQuery(query);
+    }
+
+    public void ActualizarPaciente(int pacienteId, string nombre, string apellidos, string dni, DateTime fechaNacimiento, string comentario)
+    {
+        string query = "UPDATE Pacientes SET nombre = @nombre, apellidos = @apellidos, dni = @dni, fecha_nacimiento = @fechaNacimiento, comentario = @comentario WHERE paciente_id = @pacienteId";
+        ExecuteNonQuery(query, new MySqlParameter[]
+        {
+        new MySqlParameter("@pacienteId", pacienteId),
+        new MySqlParameter("@nombre", nombre),
+        new MySqlParameter("@apellidos", apellidos),
+        new MySqlParameter("@dni", dni),
+        new MySqlParameter("@fechaNacimiento", fechaNacimiento),
+        new MySqlParameter("@comentario", comentario)
+        });
+    }
+    public void EliminarPaciente(int pacienteId)
+    {
+        string query = "DELETE FROM Pacientes WHERE paciente_id = @pacienteId";
+        ExecuteNonQuery(query, new MySqlParameter[]
+        {
+        new MySqlParameter("@pacienteId", pacienteId)
+        });
+    }
+
+
+
     // Métodos CRUD para UsuariosPrograma
     public void CrearUsuario(string username, string password)
     {

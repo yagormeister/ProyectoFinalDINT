@@ -21,5 +21,24 @@ namespace ProyectoFinalDINT
         {
 
         }
+
+        private void btAdd_Click(object sender, EventArgs e)
+        {
+            DatabaseManager db = new DatabaseManager();
+            db.Connect();
+            String nombre = tbName.Text;
+            String apellidos= tbSurname.Text;
+            String dNI = tbDNI.Text;
+            bool conversionExitosa = int.TryParse(tbPatientNumber.Text, out int numeroPaciente);  //comprobar si es int
+
+
+            DateTime fechaNacimiento = dateDOB.Value;
+            string fechaNacimientoStr = fechaNacimiento.ToString("yyyy-MM-dd");
+            String comentarios = tbComments.Text;
+            if (conversionExitosa)
+                db.CrearPaciente(nombre, apellidos, dNI, fechaNacimientoStr, comentarios);
+            else
+                MessageBox.Show("El numero de paciente tiene que ser un numero!");
+        }
     }
 }

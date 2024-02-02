@@ -16,5 +16,26 @@ namespace ProyectoFinalDINT
         {
             InitializeComponent();
         }
+
+        private void PatientsForm_Load(object sender, EventArgs e)
+        {
+            DatabaseManager db = new DatabaseManager();
+            db.Connect();
+            DataTable tablaPacientes = db.LeerPacientes();
+            dgvPatientTable.DataSource = tablaPacientes;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Login loginForm = new Login();
+            this.Hide();
+            loginForm.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddPatientForm addPatientForm = new AddPatientForm();
+            addPatientForm.ShowDialog();
+        }
     }
 }

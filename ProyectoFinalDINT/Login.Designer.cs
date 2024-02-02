@@ -57,7 +57,7 @@
             this.label1.Location = new System.Drawing.Point(126, 326);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 3;
             this.label1.Text = "Registrarse";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
@@ -67,7 +67,7 @@
             this.lbForgoten.Location = new System.Drawing.Point(597, 326);
             this.lbForgoten.Name = "lbForgoten";
             this.lbForgoten.Size = new System.Drawing.Size(104, 13);
-            this.lbForgoten.TabIndex = 2;
+            this.lbForgoten.TabIndex = 4;
             this.lbForgoten.Text = "Contraseña olvidada";
             // 
             // btnLogin
@@ -76,7 +76,7 @@
             this.btnLogin.Location = new System.Drawing.Point(361, 204);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
-            this.btnLogin.TabIndex = 3;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Iniciar sesion";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -86,7 +86,7 @@
             this.tbPassword.Location = new System.Drawing.Point(348, 158);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(100, 20);
-            this.tbPassword.TabIndex = 4;
+            this.tbPassword.TabIndex = 1;
             this.tbPassword.Text = "Contraseña";
             // 
             // Login

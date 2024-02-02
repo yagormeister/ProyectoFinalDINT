@@ -30,13 +30,16 @@ namespace ProyectoFinalDINT
             db.Connect();
             String usuarioLeido = db.SeleccionarPrimerResultado(db.LeerUsuario(tbName.Text));
             String passLeida = db.SeleccionarPrimerResultado(db.LeerPasswordDeUsuario(tbPassword.Text));
+            String usuarioIntroducido = tbName.Text;
+            String passwordIntroducida = tbPassword.Text;
             if (!String.IsNullOrWhiteSpace(usuarioLeido))
             {
-                if (tbName.Equals(usuarioLeido) && tbPassword.Equals(passLeida))
+                if (usuarioIntroducido.Equals(usuarioLeido) && passwordIntroducida.Equals(passLeida))
                 {
                     PatientsForm pat = new PatientsForm();
+                    this.Hide();
                     pat.ShowDialog();
-                    this.Close();
+
 
                 }
             }

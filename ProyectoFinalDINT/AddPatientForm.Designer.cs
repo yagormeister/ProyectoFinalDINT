@@ -160,6 +160,7 @@
             this.btAdd.TabIndex = 13;
             this.btAdd.Text = "Añadir Paciente";
             this.btAdd.UseVisualStyleBackColor = true;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // btCancel
             // 

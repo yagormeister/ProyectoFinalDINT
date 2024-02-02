@@ -136,6 +136,18 @@ public class DatabaseManager
             new MySqlParameter("@comentario", comentario)
         });
     }
+    public void CrearPaciente(string nombre, string apellidos, string dni, string fechaNacimiento, string comentario)
+    {
+        string query = "INSERT INTO Pacientes (nombre, apellidos, dni, fecha_nacimiento, comentario) VALUES (@nombre, @apellidos, @dni, @fechaNacimiento, @comentario)";
+        ExecuteNonQuery(query, new MySqlParameter[]
+        {
+            new MySqlParameter("@nombre", nombre),
+            new MySqlParameter("@apellidos", apellidos),
+            new MySqlParameter("@dni", dni),
+            new MySqlParameter("@fechaNacimiento", fechaNacimiento),
+            new MySqlParameter("@comentario", comentario)
+        });
+    }
 
     public DataTable LeerPacientes()
     {

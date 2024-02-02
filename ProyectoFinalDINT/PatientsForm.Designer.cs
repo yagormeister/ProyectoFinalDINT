@@ -71,10 +71,14 @@
             // 
             // dgvPatientTable
             // 
+            this.dgvPatientTable.AllowUserToAddRows = false;
+            this.dgvPatientTable.AllowUserToDeleteRows = false;
+            this.dgvPatientTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvPatientTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPatientTable.Enabled = false;
             this.dgvPatientTable.Location = new System.Drawing.Point(12, 79);
             this.dgvPatientTable.Name = "dgvPatientTable";
-            this.dgvPatientTable.Size = new System.Drawing.Size(635, 280);
+            this.dgvPatientTable.Size = new System.Drawing.Size(668, 280);
             this.dgvPatientTable.TabIndex = 2;
             // 
             // button1
@@ -85,6 +89,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Añadir Paciente";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -94,6 +99,7 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "Salir";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // PatientsForm
             // 
@@ -106,6 +112,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PatientsForm";
             this.Text = "Pacientes";
+            this.Load += new System.EventHandler(this.PatientsForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatientTable)).EndInit();
             this.ResumeLayout(false);

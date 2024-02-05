@@ -36,6 +36,8 @@
             this.dgvPatientTable = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btActualizar = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatientTable)).BeginInit();
             this.SuspendLayout();
@@ -75,9 +77,10 @@
             this.dgvPatientTable.AllowUserToDeleteRows = false;
             this.dgvPatientTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvPatientTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPatientTable.Enabled = false;
             this.dgvPatientTable.Location = new System.Drawing.Point(12, 79);
             this.dgvPatientTable.Name = "dgvPatientTable";
+            this.dgvPatientTable.ReadOnly = true;
+            this.dgvPatientTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPatientTable.Size = new System.Drawing.Size(668, 280);
             this.dgvPatientTable.TabIndex = 2;
             // 
@@ -101,11 +104,31 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // btActualizar
+            // 
+            this.btActualizar.Location = new System.Drawing.Point(699, 79);
+            this.btActualizar.Name = "btActualizar";
+            this.btActualizar.Size = new System.Drawing.Size(75, 48);
+            this.btActualizar.TabIndex = 5;
+            this.btActualizar.Text = "Actualizar Tabla";
+            this.btActualizar.UseVisualStyleBackColor = true;
+            this.btActualizar.Click += new System.EventHandler(this.btActualizar_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(161, 29);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 6;
+            // 
             // PatientsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.btActualizar);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvPatientTable);
@@ -129,5 +152,7 @@
         private System.Windows.Forms.DataGridView dgvPatientTable;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btActualizar;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

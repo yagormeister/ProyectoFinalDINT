@@ -170,6 +170,7 @@
             this.btCancel.TabIndex = 14;
             this.btCancel.Text = "Cancelar";
             this.btCancel.UseVisualStyleBackColor = true;
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // AddPatientForm
             // 

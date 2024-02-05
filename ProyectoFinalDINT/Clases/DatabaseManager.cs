@@ -27,7 +27,8 @@ public class DatabaseManager
         builder.Server = "localhost";
         builder.UserID = "root";
         builder.Password = "";
-        builder.Database = "mindfieldvr";
+        builder.Database = "dint";
+        //builder.Database = "mindfieldvr";
         connection = new MySqlConnection(builder.ToString());
     }
 

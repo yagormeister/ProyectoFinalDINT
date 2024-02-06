@@ -33,13 +33,12 @@ namespace ProyectoFinalDINT
 
 
             DateTime fechaNacimiento = dateDOB.Value;
-            string fechaNacimientoStr = fechaNacimiento.ToString("yyyy-MM-dd");
             String comentarios = tbComments.Text;
             PatientsForm patientsForm = new PatientsForm();
 
             if (conversionExitosa)
             {
-                db.CrearPaciente(nombre, apellidos, dNI, fechaNacimientoStr, comentarios);
+                db.CrearPaciente(nombre, apellidos,dNI,fechaNacimiento,0, null, null, null);
                 db.Disconnect();
                 this.Close();
                 

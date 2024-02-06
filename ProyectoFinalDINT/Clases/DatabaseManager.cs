@@ -27,8 +27,8 @@ public class DatabaseManager
         builder.Server = "localhost";
         builder.UserID = "root";
         builder.Password = "";
-        builder.Database = "dint";
-        //builder.Database = "mindfieldvr";
+        //builder.Database = "dint";
+        builder.Database = "mindfieldvr";
         connection = new MySqlConnection(builder.ToString());
     }
 
@@ -121,11 +121,36 @@ public class DatabaseManager
         return null; // O maneja este caso según sea necesario
     }
 
+    public DataTable LeerPacientePorId(int pacienteId)
+    {
+        string query = @"
+        SELECT 
+            paciente_id, 
+            nombre, 
+            apellidos, 
+            dni, 
+            fecha_nacimiento, 
+            sesiones, 
+            ultima_sesion, 
+            proxima_sesion, 
+            comentario 
+        FROM Pacientes 
+        WHERE paciente_id = @pacienteId";
+
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@pacienteId", pacienteId)
+        };
+
+        return ExecuteQuery(query, parameters);
+    }
+
+
 
 
 
     // CRUD Operations para Pacientes
-    public void CrearPaciente(string nombre, string apellidos, string dni, DateTime fechaNacimiento, string comentario)
+    /*public void CrearPaciente(string nombre, string apellidos, string dni, DateTime fechaNacimiento, string comentario)
     {
         string query = "INSERT INTO Pacientes (nombre, apellidos, dni, fecha_nacimiento, comentario) VALUES (@nombre, @apellidos, @dni, @fechaNacimiento, @comentario)";
         ExecuteNonQuery(query, new MySqlParameter[]
@@ -148,27 +173,80 @@ public class DatabaseManager
             new MySqlParameter("@fechaNacimiento", fechaNacimiento),
             new MySqlParameter("@comentario", comentario)
         });
+    }*/
+    public void CrearPaciente(string nombre, string apellidos, string dni, DateTime fechaNacimiento, int sesiones, DateTime? ultimaSesion, DateTime? proximaSesion, string comentario)
+    {
+        string query = "INSERT INTO Pacientes (nombre, apellidos, dni, fecha_nacimiento, sesiones, ultima_sesion, proxima_sesion, comentario) VALUES (@nombre, @apellidos, @dni, @fechaNacimiento, @sesiones, @ultimaSesion, @proximaSesion, @comentario)";
+
+        List<MySqlParameter> parameters = new List<MySqlParameter>
+    {
+        new MySqlParameter("@nombre", nombre),
+        new MySqlParameter("@apellidos", apellidos),
+        new MySqlParameter("@dni", dni),
+        new MySqlParameter("@fechaNacimiento", fechaNacimiento),
+        new MySqlParameter("@sesiones", sesiones),
+        new MySqlParameter("@comentario", comentario)
+    };
+
+        // Manejo de valores nulos para las fechas de sesión
+        parameters.Add(ultimaSesion.HasValue ? new MySqlParameter("@ultimaSesion", ultimaSesion.Value) : new MySqlParameter("@ultimaSesion", DBNull.Value));
+        parameters.Add(proximaSesion.HasValue ? new MySqlParameter("@proximaSesion", proximaSesion.Value) : new MySqlParameter("@proximaSesion", DBNull.Value));
+
+        ExecuteNonQuery(query, parameters.ToArray());
     }
+
 
     public DataTable LeerPacientes()
     {
-        string query = "SELECT paciente_id, nombre, apellidos, dni, fecha_nacimiento, comentario FROM Pacientes";
+        string query = @"
+        SELECT 
+            paciente_id, 
+            nombre, 
+            apellidos, 
+            dni, 
+            fecha_nacimiento, 
+            sesiones, 
+            ultima_sesion, 
+            proxima_sesion, 
+            comentario 
+        FROM Pacientes";
         return ExecuteQuery(query);
     }
 
-    public void ActualizarPaciente(int pacienteId, string nombre, string apellidos, string dni, DateTime fechaNacimiento, string comentario)
+
+    /* public void ActualizarPaciente(int pacienteId, string nombre, string apellidos, string dni, DateTime fechaNacimiento, string comentario)
+     {
+         string query = "UPDATE Pacientes SET nombre = @nombre, apellidos = @apellidos, dni = @dni, fecha_nacimiento = @fechaNacimiento, comentario = @comentario WHERE paciente_id = @pacienteId";
+         ExecuteNonQuery(query, new MySqlParameter[]
+         {
+         new MySqlParameter("@pacienteId", pacienteId),
+         new MySqlParameter("@nombre", nombre),
+         new MySqlParameter("@apellidos", apellidos),
+         new MySqlParameter("@dni", dni),
+         new MySqlParameter("@fechaNacimiento", fechaNacimiento),
+         new MySqlParameter("@comentario", comentario)
+         });
+     }*/
+    public void ActualizarPaciente(int pacienteId, string nombre, string apellidos, string dni, DateTime fechaNacimiento, int sesiones, DateTime? ultimaSesion, DateTime? proximaSesion, string comentario)
     {
-        string query = "UPDATE Pacientes SET nombre = @nombre, apellidos = @apellidos, dni = @dni, fecha_nacimiento = @fechaNacimiento, comentario = @comentario WHERE paciente_id = @pacienteId";
-        ExecuteNonQuery(query, new MySqlParameter[]
-        {
+        string query = "UPDATE Pacientes SET nombre = @nombre, apellidos = @apellidos, dni = @dni, fecha_nacimiento = @fechaNacimiento, sesiones = @sesiones, ultima_sesion = @ultimaSesion, proxima_sesion = @proximaSesion, comentario = @comentario WHERE paciente_id = @pacienteId";
+
+        List<MySqlParameter> parameters = new List<MySqlParameter>
+    {
         new MySqlParameter("@pacienteId", pacienteId),
         new MySqlParameter("@nombre", nombre),
         new MySqlParameter("@apellidos", apellidos),
         new MySqlParameter("@dni", dni),
         new MySqlParameter("@fechaNacimiento", fechaNacimiento),
-        new MySqlParameter("@comentario", comentario)
-        });
+        new MySqlParameter("@sesiones", sesiones),
+        new MySqlParameter("@comentario", comentario),
+        new MySqlParameter("@ultimaSesion", (object)ultimaSesion ?? DBNull.Value),
+        new MySqlParameter("@proximaSesion", (object)proximaSesion ?? DBNull.Value)
+    };
+
+        ExecuteNonQuery(query, parameters.ToArray());
     }
+
     public void EliminarPaciente(int pacienteId)
     {
         string query = "DELETE FROM Pacientes WHERE paciente_id = @pacienteId";

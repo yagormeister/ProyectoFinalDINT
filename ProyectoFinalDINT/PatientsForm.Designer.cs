@@ -75,18 +75,24 @@
             // 
             this.dgvPatientTable.AllowUserToAddRows = false;
             this.dgvPatientTable.AllowUserToDeleteRows = false;
+            this.dgvPatientTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvPatientTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvPatientTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvPatientTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPatientTable.Location = new System.Drawing.Point(12, 79);
             this.dgvPatientTable.Name = "dgvPatientTable";
             this.dgvPatientTable.ReadOnly = true;
             this.dgvPatientTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPatientTable.Size = new System.Drawing.Size(668, 280);
+            this.dgvPatientTable.Size = new System.Drawing.Size(817, 280);
             this.dgvPatientTable.TabIndex = 2;
+            this.dgvPatientTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatientTable_CellContentClick);
+            this.dgvPatientTable.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatientTable_CellContentDoubleClick);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(686, 324);
+            this.button1.Location = new System.Drawing.Point(939, 324);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -96,7 +102,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(686, 374);
+            this.button2.Location = new System.Drawing.Point(939, 374);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 4;
@@ -106,7 +112,7 @@
             // 
             // btActualizar
             // 
-            this.btActualizar.Location = new System.Drawing.Point(699, 79);
+            this.btActualizar.Location = new System.Drawing.Point(952, 79);
             this.btActualizar.Name = "btActualizar";
             this.btActualizar.Size = new System.Drawing.Size(75, 48);
             this.btActualizar.TabIndex = 5;
@@ -126,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1048, 450);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btActualizar);
             this.Controls.Add(this.button2);

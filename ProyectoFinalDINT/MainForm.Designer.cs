@@ -6,6 +6,13 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        public string PatientName { set { lbNameRecovered.Text = value; } }
+        public string PatientSurname { set { lbSurnameRecovered.Text = value; } }
+        public string PatientDNI { set { lbDNIRecovered.Text = value; } }
+        public string PatientNumber { set { lbPatientNumberRecovered.Text = value; } }
+        public string PatientDOB { set { lbDOBRecovered.Text = value; } }
+        public string PatientID { set { lbPatientNumberRecovered.Text = value; } }
+
 
         /// <summary>
         /// Clean up any resources being used.

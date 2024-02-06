@@ -49,5 +49,35 @@ namespace ProyectoFinalDINT
         {
             actualizarTabla();
         }
+
+        private void dgvPatientTable_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Asegúrate de que el doble clic sea en una fila válida
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvPatientTable.Rows[e.RowIndex];
+
+                // Crea una instancia de MainForm
+                MainForm mainForm = new MainForm();
+
+                /*// Establece las propiedades en MainForm con los datos del paciente seleccionado
+                mainForm.PatientName = row.Cells["nombre"].Value.ToString();
+                mainForm.PatientSurname = row.Cells["apellidos"].Value.ToString();
+                mainForm.PatientDNI = row.Cells["dni"].Value.ToString();
+                // Suponiendo que tienes un mecanismo para determinar el "PatientNumber"
+                // mainForm.PatientNumber = ...;
+                mainForm.PatientDOB = ((DateTime)row.Cells["fecha_nacimiento"].Value).ToString("dd/MM/yyyy");*/
+                mainForm.PatientID = row.Cells["paciente_id"].Value.ToString();
+
+                // Muestra MainForm
+                this.Hide();
+                mainForm.ShowDialog();
+            }
+        }
+
+        private void dgvPatientTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

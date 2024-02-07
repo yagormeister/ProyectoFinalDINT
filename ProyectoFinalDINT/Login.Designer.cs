@@ -88,6 +88,7 @@
             this.tbPassword.Size = new System.Drawing.Size(100, 20);
             this.tbPassword.TabIndex = 1;
             this.tbPassword.Text = "Contraseña";
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // Login
             // 

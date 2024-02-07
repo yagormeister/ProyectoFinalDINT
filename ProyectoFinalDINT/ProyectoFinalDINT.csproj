@@ -112,6 +112,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SingupForm.resx">
       <DependentUpon>SingupForm.cs</DependentUpon>
@@ -128,6 +129,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\conducir.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\alturas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\hablar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\animales.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

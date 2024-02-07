@@ -27,7 +27,6 @@ public class DatabaseManager
         builder.Server = "localhost";
         builder.UserID = "root";
         builder.Password = "";
-        //builder.Database = "dint";
         builder.Database = "mindfieldvr";
         connection = new MySqlConnection(builder.ToString());
     }
@@ -305,6 +304,74 @@ public class DatabaseManager
             new MySqlParameter("@username", username)
         });
     }
+
+
+    //METODOS DE SESIONES
+
+    public void CrearSesion(int pacienteId, DateTime fechaSesion, string comentario, int anxietyScore)
+    {
+        string query = @"
+        INSERT INTO Sesion (paciente_id, fecha_sesion, comentario, anxiety_score) 
+        VALUES (@pacienteId, @fechaSesion, @comentario, @anxietyScore)";
+
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@pacienteId", pacienteId),
+        new MySqlParameter("@fechaSesion", fechaSesion),
+        new MySqlParameter("@comentario", comentario),
+        new MySqlParameter("@anxietyScore", anxietyScore)
+        };
+
+        ExecuteNonQuery(query, parameters);
+    }
+
+    public DataTable LeerSesionesPorPacienteId(int pacienteId)
+    {
+        string query = @"
+        SELECT sesion_id, fecha_sesion, comentario, anxiety_score
+        FROM Sesion
+        WHERE paciente_id = @pacienteId
+        ORDER BY fecha_sesion DESC"; // Ordena las sesiones por fecha
+
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@pacienteId", pacienteId)
+        };
+
+        return ExecuteQuery(query, parameters);
+    }
+
+    public void ActualizarSesion(int sesionId, DateTime fechaSesion, string comentario, int anxietyScore)
+    {
+        string query = @"
+        UPDATE Sesion
+        SET fecha_sesion = @fechaSesion, comentario = @comentario, anxiety_score = @anxietyScore
+        WHERE sesion_id = @sesionId";
+
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@sesionId", sesionId),
+        new MySqlParameter("@fechaSesion", fechaSesion),
+        new MySqlParameter("@comentario", comentario),
+        new MySqlParameter("@anxietyScore", anxietyScore)
+        };
+
+        ExecuteNonQuery(query, parameters);
+    }
+
+
+    public void EliminarSesion(int sesionId)
+    {
+        string query = "DELETE FROM Sesion WHERE sesion_id = @sesionId";
+
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@sesionId", sesionId)
+        };
+
+        ExecuteNonQuery(query, parameters);
+    }
+
 
     //NOTAS CLINICAS
 

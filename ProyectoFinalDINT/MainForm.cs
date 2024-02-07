@@ -20,9 +20,13 @@ namespace ProyectoFinalDINT
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            int id_paciente = int.Parse(lbPatientNumberRecovered.Text);
+
+
             db.Connect();
-            DataTable paciente = db.LeerPacientePorId(int.Parse(lbPatientNumberRecovered.Text));
+            DataTable paciente = db.LeerPacientePorId(id_paciente);
+            DataTable sesiones = db.LeerSesionesPorPacienteId(id_paciente);
+
             db.Disconnect();
             if (paciente.Rows.Count > 0)
             {
@@ -39,13 +43,23 @@ namespace ProyectoFinalDINT
             {
                 MessageBox.Show("Error al leer el paciente!");
             }
+            dgvSessions.DataSource = sesiones;
 
 
         }
 
         private void chart1_Click(object sender, EventArgs e)
         {
+            PatientProgressForm p = new PatientProgressForm();
+            p.PatientID = lbPatientNumberRecovered.Text;
+            p.ShowDialog();
+        }
 
+        private void dgvSessions_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            PatientProgressForm p = new PatientProgressForm();
+            p.PatientID = lbPatientNumberRecovered.Text;
+            p.ShowDialog();
         }
     }
 }

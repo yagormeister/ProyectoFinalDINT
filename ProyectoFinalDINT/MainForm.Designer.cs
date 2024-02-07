@@ -35,9 +35,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lbName = new System.Windows.Forms.Label();
             this.lbSurname = new System.Windows.Forms.Label();
             this.lbDNI = new System.Windows.Forms.Label();
@@ -174,6 +174,7 @@
             this.btSend.TabIndex = 17;
             this.btSend.Text = "Enviar a VR";
             this.btSend.UseVisualStyleBackColor = true;
+            this.btSend.Click += new System.EventHandler(this.btSend_Click);
             // 
             // lbProgres
             // 
@@ -205,16 +206,16 @@
             // 
             // progressChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.progressChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.progressChart.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.progressChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.progressChart.Legends.Add(legend2);
             this.progressChart.Location = new System.Drawing.Point(513, 274);
             this.progressChart.Name = "progressChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.progressChart.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.progressChart.Series.Add(series2);
             this.progressChart.Size = new System.Drawing.Size(210, 115);
             this.progressChart.TabIndex = 21;
             this.progressChart.Text = "chart1";

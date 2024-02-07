@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -60,6 +61,44 @@ namespace ProyectoFinalDINT
             PatientProgressForm p = new PatientProgressForm();
             p.PatientID = lbPatientNumberRecovered.Text;
             p.ShowDialog();
+        }
+
+        private void btSend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = "cmd.exe",
+                    // Usar /C para que cmd ejecute el comando y luego se cierre
+                    Arguments = "/C \"C:\\Android\\sdk\\platform-tools\\adb\" shell am start -a android.intent.action.VIEW -d \"file:///storage/emulated/0/movies/SAM_0112.MP4\" -t \"video/mp4\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true, // Esto previene que se muestre la ventana de cmd
+                    RedirectStandardOutput = true, // Permite leer la salida
+                    RedirectStandardError = true // Permite leer los errores
+                };
+
+                Process adbProcess = new Process { StartInfo = psi };
+                adbProcess.Start();
+
+                // Opcional: Leer la salida
+                string output = adbProcess.StandardOutput.ReadToEnd();
+                string error = adbProcess.StandardError.ReadToEnd();
+
+                adbProcess.WaitForExit(); // Esperar a que el comando adb finalice
+
+                // Opcional: Mostrar la salida o manejar errores
+                Console.WriteLine(output);
+                if (!string.IsNullOrEmpty(error))
+                {
+                    Console.WriteLine("Error: " + error);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones, como errores al ejecutar el comando adb
+                Console.WriteLine("Exception: " + ex.Message);
+            }
         }
     }
 }

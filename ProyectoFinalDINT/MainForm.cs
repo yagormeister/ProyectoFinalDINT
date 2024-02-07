@@ -20,14 +20,21 @@ namespace ProyectoFinalDINT
         {
             InitializeComponent();
         }
-
+        
         private void MainForm_Load(object sender, EventArgs e)
         {
+
+
             //carga del flowchart
             // Lista de categorías y sus imágenes
             var categorias = new List<Tuple<string, Image>>()
                 {
+                    new Tuple<string, Image>("Conducir", Properties.Resources.conducir),
+                    new Tuple<string, Image>("Altura", Properties.Resources.alturas),
+                    new Tuple<string, Image>("Hablar", Properties.Resources.hablar),
+                    new Tuple<string, Image>("Annimales", Properties.Resources.animales),
                     new Tuple<string, Image>("Volar", Properties.Resources.avion),
+                    new Tuple<string, Image>("Payasos", Properties.Resources.payaso),
                     // Añade más categorías según sea necesario
                 };
 
@@ -44,6 +51,7 @@ namespace ProyectoFinalDINT
                 pictureBox.Click += PictureBox_Click; // Evento click para cada PictureBox
                 flowLayoutPanel1.Controls.Add(pictureBox); // Asume que tu FlowLayoutPanel se llama flowLayoutPanel1
             }
+
 
             int id_paciente = int.Parse(lbPatientNumberRecovered.Text);
 
@@ -68,6 +76,64 @@ namespace ProyectoFinalDINT
             CargarDatosEnProgressChart(id_paciente);
 
         }
+        private void PictureBox_Click(object sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                string categoriaSeleccionada = pictureBox.Tag.ToString(); // Recuperamos el nombre de la categoría desde el Tag
+                MostrarVideosDeCategoria(categoriaSeleccionada); // Método para mostrar videos de la categoría seleccionada
+            }
+        }
+        private void MostrarVideosDeCategoria(string categoria)
+        {
+            // Limpia el control que muestra los videos
+            flowLayoutPanel1.Controls.Clear();
+
+            // Consulta tu base de datos para obtener los videos de la categoría seleccionada
+            DataTable videos = db.ObtenerVideosPorCategoria(categoria);
+
+            foreach (DataRow video in videos.Rows)
+            {
+                // Asumiendo que tienes una forma de obtener la miniatura del video, por ejemplo, una ruta de archivo o un blob
+                Image miniatura = ObtenerMiniaturaDeVideo(video["titulo"].ToString());
+
+                PictureBox pictureBox = new PictureBox
+                {
+                    Image = miniatura,
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Width = 100, // Ajusta según sea necesario
+                    Height = 100, // Ajusta según sea necesario
+                    Tag = video["video_id"] // Usamos el tag para almacenar el ID del video
+                };
+                pictureBox.Click += PictureBoxVideo_Click; // Evento click para cada PictureBox
+
+                flowLayoutPanel1.Controls.Add(pictureBox);
+            }
+        }
+        private Image ObtenerMiniaturaDeVideo(string rutaMiniatura)
+        {
+            try
+            {
+                return Image.FromFile("img\\alturas.jpg");
+            }
+            catch
+            {
+                // Manejo de errores, por ejemplo, retornar una imagen predeterminada en caso de error
+                return Properties.Resources.alturas; // Asegúrate de tener esta imagen en tus recursos
+            }
+        }
+
+        private void PictureBoxVideo_Click(object sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                int videoId = Convert.ToInt32(pictureBox.Tag); // Recupera el ID del video
+                                                               // Aquí puedes manejar lo que sucede cuando se hace clic en un video, por ejemplo, reproducirlo
+            }
+        }
+
+
+
 
         private void chart1_Click(object sender, EventArgs e)
         {

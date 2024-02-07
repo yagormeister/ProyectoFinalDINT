@@ -461,6 +461,18 @@ public class DatabaseManager
         return ExecuteQuery(query);
     }
 
+    public DataTable ObtenerVideosPorCategoria(string categoria)
+    {
+        string query = "SELECT * FROM Videos WHERE categoria = @categoria";
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@categoria", categoria)
+        };
+
+        return ExecuteQuery(query, parameters);
+    }
+
+
     public void ActualizarVideo(int videoId, string nuevoTitulo, TimeSpan nuevaDuracion, string nuevaCategoria, string nuevaDescripcion)
     {
         string query = "UPDATE Videos SET titulo = @nuevoTitulo, duracion = @nuevaDuracion, categoria = @nuevaCategoria, descripcion = @nuevaDescripcion WHERE video_id = @videoId";

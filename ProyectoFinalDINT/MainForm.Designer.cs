@@ -35,9 +35,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lbName = new System.Windows.Forms.Label();
             this.lbSurname = new System.Windows.Forms.Label();
             this.lbDNI = new System.Windows.Forms.Label();
@@ -62,6 +62,7 @@
             this.pbCategory2 = new System.Windows.Forms.PictureBox();
             this.pbCategory4 = new System.Windows.Forms.PictureBox();
             this.pbCategory1 = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSessions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCategory6)).BeginInit();
@@ -160,7 +161,7 @@
             // lbVideoExplorer
             // 
             this.lbVideoExplorer.AutoSize = true;
-            this.lbVideoExplorer.Location = new System.Drawing.Point(498, 26);
+            this.lbVideoExplorer.Location = new System.Drawing.Point(951, 7);
             this.lbVideoExplorer.Name = "lbVideoExplorer";
             this.lbVideoExplorer.Size = new System.Drawing.Size(106, 13);
             this.lbVideoExplorer.TabIndex = 10;
@@ -168,7 +169,7 @@
             // 
             // btSend
             // 
-            this.btSend.Location = new System.Drawing.Point(669, 221);
+            this.btSend.Location = new System.Drawing.Point(1248, 221);
             this.btSend.Name = "btSend";
             this.btSend.Size = new System.Drawing.Size(75, 23);
             this.btSend.TabIndex = 17;
@@ -188,15 +189,15 @@
             // dgvSessions
             // 
             this.dgvSessions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSessions.Location = new System.Drawing.Point(53, 274);
+            this.dgvSessions.Location = new System.Drawing.Point(53, 287);
             this.dgvSessions.Name = "dgvSessions";
-            this.dgvSessions.Size = new System.Drawing.Size(419, 115);
+            this.dgvSessions.Size = new System.Drawing.Size(593, 192);
             this.dgvSessions.TabIndex = 19;
             this.dgvSessions.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSessions_CellContentDoubleClick);
             // 
             // btAddNewProgres
             // 
-            this.btAddNewProgres.Location = new System.Drawing.Point(68, 406);
+            this.btAddNewProgres.Location = new System.Drawing.Point(69, 496);
             this.btAddNewProgres.Name = "btAddNewProgres";
             this.btAddNewProgres.Size = new System.Drawing.Size(154, 23);
             this.btAddNewProgres.TabIndex = 20;
@@ -206,24 +207,23 @@
             // 
             // progressChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.progressChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.progressChart.Legends.Add(legend2);
-            this.progressChart.Location = new System.Drawing.Point(513, 274);
+            chartArea1.Name = "ChartArea1";
+            this.progressChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.progressChart.Legends.Add(legend1);
+            this.progressChart.Location = new System.Drawing.Point(801, 308);
             this.progressChart.Name = "progressChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.progressChart.Series.Add(series2);
-            this.progressChart.Size = new System.Drawing.Size(210, 115);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.progressChart.Series.Add(series1);
+            this.progressChart.Size = new System.Drawing.Size(557, 153);
             this.progressChart.TabIndex = 21;
             this.progressChart.Text = "chart1";
-            this.progressChart.Click += new System.EventHandler(this.chart1_Click);
             // 
             // btBack
             // 
-            this.btBack.Location = new System.Drawing.Point(551, 406);
+            this.btBack.Location = new System.Drawing.Point(1165, 496);
             this.btBack.Name = "btBack";
             this.btBack.Size = new System.Drawing.Size(75, 23);
             this.btBack.TabIndex = 22;
@@ -232,7 +232,7 @@
             // 
             // btExit
             // 
-            this.btExit.Location = new System.Drawing.Point(669, 406);
+            this.btExit.Location = new System.Drawing.Point(1283, 496);
             this.btExit.Name = "btExit";
             this.btExit.Size = new System.Drawing.Size(75, 23);
             this.btExit.TabIndex = 23;
@@ -241,24 +241,28 @@
             // 
             // pbCategory6
             // 
-            this.pbCategory6.Location = new System.Drawing.Point(660, 139);
+            this.pbCategory6.Image = global::ProyectoFinalDINT.Properties.Resources.payaso;
+            this.pbCategory6.Location = new System.Drawing.Point(1099, 114);
             this.pbCategory6.Name = "pbCategory6";
-            this.pbCategory6.Size = new System.Drawing.Size(100, 50);
+            this.pbCategory6.Size = new System.Drawing.Size(128, 76);
+            this.pbCategory6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbCategory6.TabIndex = 16;
             this.pbCategory6.TabStop = false;
             // 
             // pbCategory5
             // 
-            this.pbCategory5.Location = new System.Drawing.Point(526, 139);
+            this.pbCategory5.Image = global::ProyectoFinalDINT.Properties.Resources.avion;
+            this.pbCategory5.Location = new System.Drawing.Point(954, 114);
             this.pbCategory5.Name = "pbCategory5";
-            this.pbCategory5.Size = new System.Drawing.Size(100, 50);
+            this.pbCategory5.Size = new System.Drawing.Size(153, 80);
+            this.pbCategory5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbCategory5.TabIndex = 15;
             this.pbCategory5.TabStop = false;
             // 
             // pbCategory3
             // 
             this.pbCategory3.Image = global::ProyectoFinalDINT.Properties.Resources.hablar;
-            this.pbCategory3.Location = new System.Drawing.Point(632, 34);
+            this.pbCategory3.Location = new System.Drawing.Point(1085, 15);
             this.pbCategory3.Name = "pbCategory3";
             this.pbCategory3.Size = new System.Drawing.Size(142, 99);
             this.pbCategory3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -268,7 +272,7 @@
             // pbCategory2
             // 
             this.pbCategory2.Image = global::ProyectoFinalDINT.Properties.Resources.alturas;
-            this.pbCategory2.Location = new System.Drawing.Point(513, 44);
+            this.pbCategory2.Location = new System.Drawing.Point(966, 25);
             this.pbCategory2.Name = "pbCategory2";
             this.pbCategory2.Size = new System.Drawing.Size(113, 74);
             this.pbCategory2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -278,7 +282,7 @@
             // pbCategory4
             // 
             this.pbCategory4.Image = global::ProyectoFinalDINT.Properties.Resources.animales;
-            this.pbCategory4.Location = new System.Drawing.Point(374, 133);
+            this.pbCategory4.Location = new System.Drawing.Point(827, 114);
             this.pbCategory4.Name = "pbCategory4";
             this.pbCategory4.Size = new System.Drawing.Size(123, 80);
             this.pbCategory4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -288,18 +292,26 @@
             // pbCategory1
             // 
             this.pbCategory1.Image = global::ProyectoFinalDINT.Properties.Resources.conducir;
-            this.pbCategory1.Location = new System.Drawing.Point(364, 44);
+            this.pbCategory1.Location = new System.Drawing.Point(817, 25);
             this.pbCategory1.Name = "pbCategory1";
             this.pbCategory1.Size = new System.Drawing.Size(133, 83);
             this.pbCategory1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbCategory1.TabIndex = 11;
             this.pbCategory1.TabStop = false;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(237, 2);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(549, 242);
+            this.flowLayoutPanel1.TabIndex = 24;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1394, 556);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btExit);
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.progressChart);
@@ -366,5 +378,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart progressChart;
         private System.Windows.Forms.Button btBack;
         private System.Windows.Forms.Button btExit;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

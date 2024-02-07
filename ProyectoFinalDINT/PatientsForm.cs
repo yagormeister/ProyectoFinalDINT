@@ -79,5 +79,10 @@ namespace ProyectoFinalDINT
         {
 
         }
+
+        private void PatientsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -141,6 +141,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PatientsForm";
             this.Text = "Pacientes";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatientsForm_FormClosing);
             this.Load += new System.EventHandler(this.PatientsForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatientTable)).EndInit();

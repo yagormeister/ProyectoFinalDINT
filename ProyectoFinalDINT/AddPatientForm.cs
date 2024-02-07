@@ -45,6 +45,7 @@ namespace ProyectoFinalDINT
             }
             else
                 MessageBox.Show("El numero de paciente tiene que ser un numero!");
+                MessageBox.Show("Si eres Miguel y estas intentando romperme el programa, ya te vale");
         }
 
         private void btCancel_Click(object sender, EventArgs e)

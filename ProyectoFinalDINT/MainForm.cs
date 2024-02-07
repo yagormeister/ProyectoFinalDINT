@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ProyectoFinalDINT
 {
     public partial class MainForm : Form
     {
         DatabaseManager db = new DatabaseManager();
+
         public MainForm()
         {
             InitializeComponent();
@@ -21,31 +23,49 @@ namespace ProyectoFinalDINT
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //carga del flowchart
+            // Lista de categorías y sus imágenes
+            var categorias = new List<Tuple<string, Image>>()
+                {
+                    new Tuple<string, Image>("Volar", Properties.Resources.avion),
+                    // Añade más categorías según sea necesario
+                };
+
+            foreach (var categoria in categorias)
+            {
+                PictureBox pictureBox = new PictureBox
+                {
+                    Image = categoria.Item2,
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Width = 100,
+                    Height = 100,
+                    Tag = categoria.Item1 // Usamos el tag para almacenar el nombre de la categoría
+                };
+                pictureBox.Click += PictureBox_Click; // Evento click para cada PictureBox
+                flowLayoutPanel1.Controls.Add(pictureBox); // Asume que tu FlowLayoutPanel se llama flowLayoutPanel1
+            }
+
             int id_paciente = int.Parse(lbPatientNumberRecovered.Text);
 
+            ActualizarChart();            
 
-            db.Connect();
-            DataTable paciente = db.LeerPacientePorId(id_paciente);
-            DataTable sesiones = db.LeerSesionesPorPacienteId(id_paciente);
+            //CARGA DEL GRAFICO
 
-            db.Disconnect();
-            if (paciente.Rows.Count > 0)
-            {
-                DataRow row = paciente.Rows[0]; // Obtener la primera fila
+            // Configura los nombres de las series
+            progressChart.Series.Clear(); // Limpia las series anteriores si las hubiera
+            progressChart.Series.Add("Anxiety Score");
 
-                // Poblar los Labels
-                lbNameRecovered.Text = row["nombre"].ToString();
-                lbSurnameRecovered.Text = row["apellidos"].ToString();
-                lbDNIRecovered.Text = row["dni"].ToString();
-                lbDNIRecovered.Text = Convert.ToDateTime(row["fecha_nacimiento"]).ToString("dd/MM/yyyy"); // Formatear la fecha según sea necesario
-                                                                                                 // Continúa para los demás Labels que necesites poblar
-            }
-            else
-            {
-                MessageBox.Show("Error al leer el paciente!");
-            }
-            dgvSessions.DataSource = sesiones;
+            // Configura el eje X
+            progressChart.ChartAreas[0].AxisX.Title = "Fechas de Sesiones";
+            progressChart.ChartAreas[0].AxisX.Interval = 1; // Dependiendo de la cantidad de datos, puedes ajustar el intervalo
+            progressChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days; // Ajusta según tus datos
+            progressChart.ChartAreas[0].AxisX.LabelStyle.Format = "dd-MM-yyyy"; // Formato de fecha
 
+            // Configura el eje Y
+            progressChart.ChartAreas[0].AxisY.Title = "Anxiety Score";
+            progressChart.ChartAreas[0].AxisY.Minimum = 0; // Ajusta según tus datos
+
+            CargarDatosEnProgressChart(id_paciente);
 
         }
 
@@ -54,6 +74,8 @@ namespace ProyectoFinalDINT
             PatientProgressForm p = new PatientProgressForm();
             p.PatientID = lbPatientNumberRecovered.Text;
             p.ShowDialog();
+            ActualizarChart();
+
         }
 
         private void dgvSessions_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -61,6 +83,8 @@ namespace ProyectoFinalDINT
             PatientProgressForm p = new PatientProgressForm();
             p.PatientID = lbPatientNumberRecovered.Text;
             p.ShowDialog();
+            ActualizarChart();
+
         }
 
         private void btSend_Click(object sender, EventArgs e)
@@ -100,5 +124,49 @@ namespace ProyectoFinalDINT
                 Console.WriteLine("Exception: " + ex.Message);
             }
         }
+
+        //METODO PARA OBTENER LOS DATOS PARA LA TABLA
+        private void CargarDatosEnProgressChart(int pacienteId)
+        {
+            // Asume que tienes una instancia de DatabaseManager llamada dbManager
+            List<Tuple<DateTime, int>> datosSesiones = db.ObtenerDatosSesionesPorPaciente(pacienteId);
+
+            // Configura la serie de datos
+            progressChart.Series["Anxiety Score"].Points.Clear();
+            foreach (var sesion in datosSesiones)
+            {
+                progressChart.Series["Anxiety Score"].Points.AddXY(sesion.Item1, sesion.Item2);
+            }
+        }
+
+        private void ActualizarChart()
+        {
+            //CARGA DE LOS DATOS DEL PACIENTE SELECCIONADO
+
+            int id_paciente = int.Parse(lbPatientNumberRecovered.Text);
+
+            db.Connect();
+            DataTable paciente = db.LeerPacientePorId(id_paciente);
+            DataTable sesiones = db.LeerSesionesPorPacienteId(id_paciente);
+
+            db.Disconnect();
+            if (paciente.Rows.Count > 0)
+            {
+                DataRow row = paciente.Rows[0]; // Obtener la primera fila
+
+                // Poblar los Labels
+                lbNameRecovered.Text = row["nombre"].ToString();
+                lbSurnameRecovered.Text = row["apellidos"].ToString();
+                lbDNIRecovered.Text = row["dni"].ToString();
+                lbDNIRecovered.Text = Convert.ToDateTime(row["fecha_nacimiento"]).ToString("dd/MM/yyyy"); // Formatear la fecha según sea necesario
+                                                                                                          // Continúa para los demás Labels que necesites poblar
+            }
+            else
+            {
+                MessageBox.Show("Error al leer el paciente!");
+            }
+            dgvSessions.DataSource = sesiones;
+        }
+
     }
 }

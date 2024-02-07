@@ -372,6 +372,35 @@ public class DatabaseManager
         ExecuteNonQuery(query, parameters);
     }
 
+    //METODO PARA OBTENER DATOS PARA EL CHART
+    public List<Tuple<DateTime, int>> ObtenerDatosSesionesPorPaciente(int pacienteId)
+    {
+        List<Tuple<DateTime, int>> datosSesiones = new List<Tuple<DateTime, int>>();
+
+        string query = @"
+    SELECT fecha_sesion, anxiety_score
+    FROM Sesion
+    WHERE paciente_id = @pacienteId
+    ORDER BY fecha_sesion ASC"; // Asegúrate de ordenar por fecha para que el gráfico muestre una línea de tiempo coherente
+
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@pacienteId", pacienteId)
+        };
+
+        DataTable dataTable = ExecuteQuery(query, parameters);
+
+        foreach (DataRow row in dataTable.Rows)
+        {
+            DateTime fechaSesion = Convert.ToDateTime(row["fecha_sesion"]);
+            int anxietyScore = Convert.ToInt32(row["anxiety_score"]);
+            datosSesiones.Add(Tuple.Create(fechaSesion, anxietyScore));
+        }
+
+        return datosSesiones;
+    }
+
+
 
     //NOTAS CLINICAS
 

@@ -46,6 +46,8 @@ namespace ProyectoFinalDINT
             else
             {
                 MessageBox.Show("EL usuario no existe!");
+                MessageBox.Show("Si eres Miguél, y estás aporreando el teclado, ya vale");
+
             }
             db.Disconnect();
 

@@ -121,13 +121,19 @@
   <data name="hablar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\hablar.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="animales" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\animales.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="conducir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\conducir.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="alturas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\alturas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="animales" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\animales.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="avion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\avion.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="payaso" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\payaso.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

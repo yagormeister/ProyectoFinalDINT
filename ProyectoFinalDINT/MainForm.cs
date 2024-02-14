@@ -84,30 +84,49 @@ namespace ProyectoFinalDINT
                 MostrarVideosDeCategoria(categoriaSeleccionada); // Método para mostrar videos de la categoría seleccionada
             }
         }
+
         private void MostrarVideosDeCategoria(string categoria)
         {
-            // Limpia el control que muestra los videos
             flowLayoutPanel1.Controls.Clear();
-
-            // Consulta tu base de datos para obtener los videos de la categoría seleccionada
             DataTable videos = db.ObtenerVideosPorCategoria(categoria);
 
             foreach (DataRow video in videos.Rows)
             {
-                // Asumiendo que tienes una forma de obtener la miniatura del video, por ejemplo, una ruta de archivo o un blob
-                Image miniatura = ObtenerMiniaturaDeVideo(video["titulo"].ToString());
-
-                PictureBox pictureBox = new PictureBox
+                Panel videoPanel = new Panel
                 {
-                    Image = miniatura,
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    Width = 100, // Ajusta según sea necesario
-                    Height = 100, // Ajusta según sea necesario
-                    Tag = video["video_id"] // Usamos el tag para almacenar el ID del video
+                    Width = flowLayoutPanel1.Width - 20, // Adjust the width
+                    Height = 100, // Adjust the height
+                    Padding = new Padding(5),
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Tag = video["titulo"].ToString() // Store the video title for later
                 };
-                pictureBox.Click += PictureBoxVideo_Click; // Evento click para cada PictureBox
+                videoPanel.Click += PictureBoxVideo_Click; // Click event for the panel
 
-                flowLayoutPanel1.Controls.Add(pictureBox);
+                Label titleLabel = new Label
+                {
+                    Text = video["titulo"].ToString(),
+                    AutoSize = true,
+                    Font = new Font("Arial", 10, FontStyle.Bold)
+                };
+                videoPanel.Controls.Add(titleLabel);
+
+                Label durationLabel = new Label
+                {
+                    Text = $"Duration: {video["duracion"].ToString()}",
+                    AutoSize = true,
+                    Font = new Font("Arial", 8)
+                };
+                videoPanel.Controls.Add(durationLabel);
+
+                Label descriptionLabel = new Label
+                {
+                    Text = video["descripcion"].ToString(),
+                    AutoSize = true,
+                    Font = new Font("Arial", 8)
+                };
+                videoPanel.Controls.Add(descriptionLabel);
+
+                flowLayoutPanel1.Controls.Add(videoPanel);
             }
         }
         private Image ObtenerMiniaturaDeVideo(string rutaMiniatura)
@@ -123,14 +142,41 @@ namespace ProyectoFinalDINT
             }
         }
 
-        private void PictureBoxVideo_Click(object sender, EventArgs e)
+        private async void PictureBoxVideo_Click(object sender, EventArgs e)
         {
-            if (sender is PictureBox pictureBox)
+            Panel panel = sender as Panel;
+            if (panel != null)
             {
-                int videoId = Convert.ToInt32(pictureBox.Tag); // Recupera el ID del video
-                                                               // Aquí puedes manejar lo que sucede cuando se hace clic en un video, por ejemplo, reproducirlo
+                string videoTitle = panel.Tag.ToString();
+                string videoPath = $"file:///storage/emulated/0/movies/{videoTitle}.MP4";
+
+                try
+                {
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        FileName = "powershell",
+                        Arguments = $"-Command \"Start-Process 'adb' -ArgumentList 'shell am start -a android.intent.action.VIEW -d \"{videoPath}\" -t \"video/mp4\"'\"",
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true
+                    };
+
+                    using (Process process = new Process { StartInfo = psi })
+                    {
+                        process.Start();
+                        process.WaitForExit();
+                        // Handle output and errors if needed
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error launching video: {ex.Message}");
+                }
             }
         }
+
+
 
 
 

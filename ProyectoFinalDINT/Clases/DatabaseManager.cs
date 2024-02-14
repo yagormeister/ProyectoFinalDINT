@@ -324,6 +324,25 @@ public class DatabaseManager
 
         ExecuteNonQuery(query, parameters);
     }
+    public DataTable LeerSesionPorId(int sesionId)
+    {
+        string query = @"
+    SELECT 
+        paciente_id, 
+        fecha_sesion, 
+        comentario, 
+        anxiety_score 
+    FROM Sesion 
+    WHERE sesion_id = @sesionId";
+
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@sesionId", sesionId)
+        };
+
+        return ExecuteQuery(query, parameters);
+    }
+
 
     public DataTable LeerSesionesPorPacienteId(int pacienteId)
     {
@@ -402,44 +421,6 @@ public class DatabaseManager
 
 
 
-    //NOTAS CLINICAS
-
-    public void CrearNotaClinica(int pacienteId, string contenido)
-    {
-        string query = "INSERT INTO NotasClinicas (paciente_id, contenido) VALUES (@pacienteId, @contenido)";
-        ExecuteNonQuery(query, new MySqlParameter[]
-        {
-        new MySqlParameter("@pacienteId", pacienteId),
-        new MySqlParameter("@contenido", contenido)
-        });
-    }
-
-    public DataTable LeerNotasClinicasPorPaciente(int pacienteId)
-    {
-        string query = "SELECT nota_id, contenido FROM NotasClinicas WHERE paciente_id = @pacienteId";
-        return ExecuteQuery(query, new MySqlParameter[]
-        {
-        new MySqlParameter("@pacienteId", pacienteId)
-        });
-    }
-
-    public void ActualizarNotaClinica(int notaId, string nuevoContenido)
-    {
-        string query = "UPDATE NotasClinicas SET contenido = @nuevoContenido WHERE nota_id = @notaId";
-        ExecuteNonQuery(query, new MySqlParameter[]
-        {
-        new MySqlParameter("@notaId", notaId),
-        new MySqlParameter("@nuevoContenido", nuevoContenido)
-        });
-    }
-    public void EliminarNotaClinica(int notaId)
-    {
-        string query = "DELETE FROM NotasClinicas WHERE nota_id = @notaId";
-        ExecuteNonQuery(query, new MySqlParameter[]
-        {
-        new MySqlParameter("@notaId", notaId)
-        });
-    }
 
 
     //VIDEOS

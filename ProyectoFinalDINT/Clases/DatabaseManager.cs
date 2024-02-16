@@ -31,6 +31,44 @@ public class DatabaseManager
         connection = new MySqlConnection(builder.ToString());
     }
 
+    //Filtrado 
+    public DataTable FiltrarPacientesSinSesiones()
+    {
+        string query = @"
+        SELECT * 
+        FROM Pacientes 
+        WHERE paciente_id NOT IN 
+            (SELECT DISTINCT paciente_id FROM Sesion)";
+        return ExecuteQuery(query);
+    }
+
+    public DataTable FiltrarPacientesConSesionManana()
+    {
+        DateTime manana = DateTime.Now.AddDays(1);
+        string query = $@"
+        SELECT * 
+        FROM Pacientes 
+        WHERE paciente_id IN 
+            (SELECT DISTINCT paciente_id FROM Sesion 
+             WHERE proxima_sesion = '{manana.ToString("yyyy-MM-dd")}' )";
+        return ExecuteQuery(query);
+    }
+
+    public DataTable FiltrarPacientesConSesionProximaSemana()
+    {
+        DateTime inicioSemana = DateTime.Now.AddDays(1);
+        DateTime finSemana = DateTime.Now.AddDays(7);
+        string query = $@"
+        SELECT * 
+        FROM Pacientes 
+        WHERE paciente_id IN 
+            (SELECT DISTINCT paciente_id FROM Sesion 
+             WHERE proxima_sesion BETWEEN '{inicioSemana.ToString("yyyy-MM-dd")}' 
+             AND '{finSemana.ToString("yyyy-MM-dd")}' )";
+        return ExecuteQuery(query);
+    }
+
+
     //METODOS DE CONEXION
 
     public void Connect()
@@ -323,6 +361,17 @@ public class DatabaseManager
         };
 
         ExecuteNonQuery(query, parameters);
+        string queryUpdate = @"
+    UPDATE Pacientes
+    SET sesiones = sesiones + 1
+    WHERE paciente_id = @pacienteId";
+
+        MySqlParameter[] parametersUpdate = new MySqlParameter[]
+        {
+        new MySqlParameter("@pacienteId", pacienteId)
+        };
+
+        ExecuteNonQuery(queryUpdate, parametersUpdate);
     }
     public DataTable LeerSesionPorId(int sesionId)
     {

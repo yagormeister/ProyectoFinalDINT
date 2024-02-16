@@ -32,12 +32,12 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.dgvPatientTable = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.btActualizar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btDelete = new System.Windows.Forms.Button();
+            this.btEdit = new System.Windows.Forms.Button();
+            this.filtroPacientesControl1 = new ProyectoFinalDINT.FiltroPacientesControl();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatientTable)).BeginInit();
             this.SuspendLayout();
@@ -61,15 +61,6 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem2.Text = "toolStripMenuItem2";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(74, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Barra de filtrado";
             // 
             // dgvPatientTable
             // 
@@ -111,35 +102,44 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // btActualizar
+            // btDelete
             // 
-            this.btActualizar.Location = new System.Drawing.Point(952, 79);
-            this.btActualizar.Name = "btActualizar";
-            this.btActualizar.Size = new System.Drawing.Size(75, 48);
-            this.btActualizar.TabIndex = 5;
-            this.btActualizar.Text = "Actualizar Tabla";
-            this.btActualizar.UseVisualStyleBackColor = true;
-            this.btActualizar.Click += new System.EventHandler(this.btActualizar_Click);
+            this.btDelete.Location = new System.Drawing.Point(832, 79);
+            this.btDelete.Name = "btDelete";
+            this.btDelete.Size = new System.Drawing.Size(101, 23);
+            this.btDelete.TabIndex = 7;
+            this.btDelete.Text = "Eliminar Paciente";
+            this.btDelete.UseVisualStyleBackColor = true;
+            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
             // 
-            // comboBox1
+            // btEdit
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(161, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 6;
+            this.btEdit.Location = new System.Drawing.Point(939, 79);
+            this.btEdit.Name = "btEdit";
+            this.btEdit.Size = new System.Drawing.Size(95, 23);
+            this.btEdit.TabIndex = 8;
+            this.btEdit.Text = "Editar Paciente";
+            this.btEdit.UseVisualStyleBackColor = true;
+            this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
+            // 
+            // filtroPacientesControl1
+            // 
+            this.filtroPacientesControl1.Location = new System.Drawing.Point(12, 49);
+            this.filtroPacientesControl1.Name = "filtroPacientesControl1";
+            this.filtroPacientesControl1.Size = new System.Drawing.Size(767, 24);
+            this.filtroPacientesControl1.TabIndex = 9;
             // 
             // PatientsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 450);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.btActualizar);
+            this.Controls.Add(this.filtroPacientesControl1);
+            this.Controls.Add(this.btEdit);
+            this.Controls.Add(this.btDelete);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvPatientTable);
-            this.Controls.Add(this.label1);
             this.Name = "PatientsForm";
             this.Text = "Pacientes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatientsForm_FormClosing);
@@ -147,7 +147,6 @@
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatientTable)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -156,11 +155,11 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvPatientTable;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btActualizar;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btDelete;
+        private System.Windows.Forms.Button btEdit;
+        private FiltroPacientesControl filtroPacientesControl1;
     }
 }

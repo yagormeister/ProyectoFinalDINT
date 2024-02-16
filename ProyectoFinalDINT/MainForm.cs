@@ -22,6 +22,19 @@ namespace ProyectoFinalDINT
             InitializeComponent();
             btAtras.Visible = false; // Asegúrate de inicializar el botón Atrás como no visible
             btAtras.Click += btAtras_Click; // Agrega el manejador de eventos al botón Atrás
+            ActualizarChart();
+            // Agregar las columnas de botones al final de dgvSessions
+            DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
+            editButtonColumn.HeaderText = "Editar";
+            editButtonColumn.Text = "Editar";
+            editButtonColumn.UseColumnTextForButtonValue = true;
+            dgvSessions.Columns.Add(editButtonColumn);
+
+            DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
+            deleteButtonColumn.HeaderText = "Eliminar";
+            deleteButtonColumn.Text = "Eliminar";
+            deleteButtonColumn.UseColumnTextForButtonValue = true;
+            dgvSessions.Columns.Add(deleteButtonColumn);
             ConfigurarGrafica();
         }
 
@@ -147,14 +160,48 @@ namespace ProyectoFinalDINT
         {
             if (e.RowIndex >= 0)
             {
-                var sesionId = Convert.ToInt32(dgvSessions.Rows[e.RowIndex].Cells["sesion_id"].Value); // Asegúrate de que "sesion_id" es el nombre correcto de la columna que contiene el ID de la sesión
+                // Manejar el evento de doble clic en la celda aquí
+                // Puedes obtener el ID de la sesión seleccionada usando:
+                var sesionId = Convert.ToInt32(dgvSessions.Rows[e.RowIndex].Cells["sesion_id"].Value);
+                // Luego puedes realizar las acciones necesarias al hacer doble clic en la sesión
+                // Por ejemplo, abrir un formulario de detalles pasando el sesionId.
                 PatientProgressForm p = new PatientProgressForm(sesionId);
                 p.PatientID = lbPatientNumberRecovered.Text;
                 p.ShowDialog();
                 ActualizarChart();
             }
-
         }
+        private void dgvSessions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgvSessions.Columns["Editar"].Index)
+            {
+                // Manejar el evento de clic en el botón "Editar" aquí
+                // Puedes obtener el ID de la sesión seleccionada usando:
+                var sesionId = Convert.ToInt32(dgvSessions.Rows[e.RowIndex].Cells["sesion_id"].Value);
+                // Luego puedes realizar las acciones necesarias para editar la sesión
+                // Por ejemplo, abrir un formulario de edición pasando el sesionId.
+                PatientProgressForm p = new PatientProgressForm(sesionId);
+                p.PatientID = lbPatientNumberRecovered.Text;
+                p.ShowDialog();
+                ActualizarChart();
+            }
+            else if (e.RowIndex >= 0 && e.ColumnIndex == dgvSessions.Columns["Eliminar"].Index)
+            {
+                // Manejar el evento de clic en el botón "Eliminar" aquí
+                // Puedes obtener el ID de la sesión seleccionada usando:
+                var sesionId = Convert.ToInt32(dgvSessions.Rows[e.RowIndex].Cells["sesion_id"].Value);
+                // Luego puedes realizar las acciones necesarias para eliminar la sesión
+                // Por ejemplo, mostrar un cuadro de diálogo de confirmación y eliminar la sesión si es confirmado.
+                DialogResult result = MessageBox.Show("¿Estás seguro de eliminar esta sesión?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    // Agrega el código para eliminar la sesión
+                    // Por ejemplo, db.EliminarSesion(sesionId);
+                    ActualizarChart(); // Actualiza el gráfico después de eliminar la sesión
+                }
+            }
+        }
+
 
 
         //METODO PARA OBTENER LOS DATOS PARA LA TABLA
@@ -197,6 +244,7 @@ namespace ProyectoFinalDINT
                 MessageBox.Show("Error al leer el paciente!");
             }
             dgvSessions.DataSource = sesiones;
+
         }
 
         private void btAtras_Click(object sender, EventArgs e)

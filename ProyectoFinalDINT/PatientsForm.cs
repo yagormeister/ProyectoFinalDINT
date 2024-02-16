@@ -37,7 +37,7 @@ namespace ProyectoFinalDINT
             if (e.RowIndex >= 0)
             {
                 // Verificar si la columna "Editar" fue clickeada
-                if (e.ColumnIndex == 9)
+                if (e.ColumnIndex == dgvPatientTable.Columns.Count - 2)
                 {
                     // Código para editar el paciente
                     int pacienteId = Convert.ToInt32(dgvPatientTable.Rows[e.RowIndex].Cells["paciente_id"].Value);

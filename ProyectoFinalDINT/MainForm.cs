@@ -153,6 +153,11 @@ namespace ProyectoFinalDINT
             p.PatientID = lbPatientNumberRecovered.Text;
             p.ShowDialog();
             ActualizarChart();
+            foreach (DataGridViewColumn column in dgvSessions.Columns)
+            {
+                Console.WriteLine($"Column Name: {column.Name}, Display Index: {column.DisplayIndex}");
+            }
+
 
         }
 

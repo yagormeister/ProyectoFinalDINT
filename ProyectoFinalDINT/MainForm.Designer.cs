@@ -35,9 +35,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lbName = new System.Windows.Forms.Label();
             this.lbSurname = new System.Windows.Forms.Label();
             this.lbDNI = new System.Windows.Forms.Label();
@@ -57,6 +57,8 @@
             this.btExit = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btAtras = new System.Windows.Forms.Button();
+            this.btNuevaCita = new System.Windows.Forms.Button();
+            this.controlCitas1 = new ProyectoFinalDINT.ControlCitas();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSessions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressChart)).BeginInit();
             this.SuspendLayout();
@@ -166,10 +168,14 @@
             // 
             // dgvSessions
             // 
+            this.dgvSessions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvSessions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dgvSessions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSessions.Location = new System.Drawing.Point(53, 287);
+            this.dgvSessions.MultiSelect = false;
             this.dgvSessions.Name = "dgvSessions";
-            this.dgvSessions.Size = new System.Drawing.Size(593, 192);
+            this.dgvSessions.ReadOnly = true;
+            this.dgvSessions.Size = new System.Drawing.Size(429, 192);
             this.dgvSessions.TabIndex = 19;
             this.dgvSessions.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSessions_CellContentDoubleClick);
             // 
@@ -185,23 +191,23 @@
             // 
             // progressChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.progressChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.progressChart.Legends.Add(legend3);
-            this.progressChart.Location = new System.Drawing.Point(801, 308);
+            chartArea1.Name = "ChartArea1";
+            this.progressChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.progressChart.Legends.Add(legend1);
+            this.progressChart.Location = new System.Drawing.Point(721, 313);
             this.progressChart.Name = "progressChart";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.progressChart.Series.Add(series3);
-            this.progressChart.Size = new System.Drawing.Size(557, 153);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.progressChart.Series.Add(series1);
+            this.progressChart.Size = new System.Drawing.Size(429, 153);
             this.progressChart.TabIndex = 21;
             this.progressChart.Text = "chart1";
             // 
             // btBack
             // 
-            this.btBack.Location = new System.Drawing.Point(1165, 496);
+            this.btBack.Location = new System.Drawing.Point(957, 501);
             this.btBack.Name = "btBack";
             this.btBack.Size = new System.Drawing.Size(75, 23);
             this.btBack.TabIndex = 22;
@@ -211,7 +217,7 @@
             // 
             // btExit
             // 
-            this.btExit.Location = new System.Drawing.Point(1283, 496);
+            this.btExit.Location = new System.Drawing.Point(1075, 501);
             this.btExit.Name = "btExit";
             this.btExit.Size = new System.Drawing.Size(75, 23);
             this.btExit.TabIndex = 23;
@@ -222,14 +228,14 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(723, 7);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(705, 7);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(659, 253);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(477, 253);
             this.flowLayoutPanel1.TabIndex = 24;
             // 
             // btAtras
             // 
-            this.btAtras.Location = new System.Drawing.Point(1236, 266);
+            this.btAtras.Location = new System.Drawing.Point(1028, 271);
             this.btAtras.Name = "btAtras";
             this.btAtras.Size = new System.Drawing.Size(75, 23);
             this.btAtras.TabIndex = 25;
@@ -237,11 +243,34 @@
             this.btAtras.UseVisualStyleBackColor = true;
             this.btAtras.Click += new System.EventHandler(this.btAtras_Click);
             // 
+            // btNuevaCita
+            // 
+            this.btNuevaCita.Location = new System.Drawing.Point(262, 496);
+            this.btNuevaCita.Name = "btNuevaCita";
+            this.btNuevaCita.Size = new System.Drawing.Size(75, 23);
+            this.btNuevaCita.TabIndex = 27;
+            this.btNuevaCita.Text = "Nueva Cita";
+            this.btNuevaCita.UseVisualStyleBackColor = true;
+            this.btNuevaCita.Click += new System.EventHandler(this.btNuevaCita_Click);
+            // 
+            // controlCitas1
+            // 
+            this.controlCitas1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.controlCitas1.Enabled = false;
+            this.controlCitas1.Location = new System.Drawing.Point(434, 139);
+            this.controlCitas1.Name = "controlCitas1";
+            this.controlCitas1.PacienteId = 0;
+            this.controlCitas1.Size = new System.Drawing.Size(305, 147);
+            this.controlCitas1.TabIndex = 26;
+            this.controlCitas1.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1394, 556);
+            this.ClientSize = new System.Drawing.Size(1194, 542);
+            this.Controls.Add(this.btNuevaCita);
+            this.Controls.Add(this.controlCitas1);
             this.Controls.Add(this.btAtras);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btExit);
@@ -292,5 +321,7 @@
         private System.Windows.Forms.Button btExit;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btAtras;
+        private ControlCitas controlCitas1;
+        private System.Windows.Forms.Button btNuevaCita;
     }
 }

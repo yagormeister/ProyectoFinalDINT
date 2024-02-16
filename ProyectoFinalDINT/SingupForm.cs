@@ -57,7 +57,7 @@ namespace ProyectoFinalDINT
                 else
                 {
                     this.lbNewUserErrorPass.Visible = false;
-                    String query = "INSERT INTO UsuariosPrograma (username, password) VALUES (@user, @pass)";
+                    String  query = "INSERT INTO UsuariosPrograma (username, password) VALUES (@user, @pass)";
                     String userLeido = db.SeleccionarPrimerResultado(db.LeerUsuario(user));
                     db.CrearUsuario(user, pass);
                     db.Disconnect();

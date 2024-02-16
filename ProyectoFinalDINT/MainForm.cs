@@ -16,6 +16,7 @@ namespace ProyectoFinalDINT
     {
         DatabaseManager db = new DatabaseManager();
 
+
         public MainForm()
         {
             InitializeComponent();
@@ -285,6 +286,17 @@ namespace ProyectoFinalDINT
                 XValueType = ChartValueType.DateTime // Si usas fechas en el eje X
             };
             progressChart.Series.Add(series);
+        }
+
+        private void btNuevaCita_Click(object sender, EventArgs e)
+        {
+            controlCitas1.Visible = true;
+            controlCitas1.Enabled = true;
+            var pacienteId = int.Parse(lbPatientNumberRecovered.Text); 
+            //ControlCitas controlCitas = new ControlCitas();
+            controlCitas1.PacienteId = pacienteId;
+
+
         }
     }
 }

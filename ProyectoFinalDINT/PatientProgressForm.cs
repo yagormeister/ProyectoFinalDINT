@@ -30,6 +30,8 @@ namespace ProyectoFinalDINT
                 CargarDatosSesion(SesionID.Value);
                 EstablecerModoSoloLectura();
             }
+            lbScore.Hide();
+
         }
         //CONSTRUCTOR EXTRA
         public PatientProgressForm(int sesionId)
@@ -56,6 +58,7 @@ namespace ProyectoFinalDINT
                 tbComment.Text = row["comentario"].ToString();
                 tbComment.Text += "\n---------------------------------------------------------\nAnxiety Score: ";
                 tbComment.Text += row["anxiety_score"].ToString();
+                lbScore.Text = row["anxiety_score"].ToString();
 
                 // Si necesitas mostrar la fecha de la sesión y el Anxiety Score, puedes usar Label o cualquier otro control adecuado.
                 // Por ejemplo, si tienes un Label para la fecha y el score, podrías hacer algo así:
@@ -85,11 +88,16 @@ namespace ProyectoFinalDINT
             DatabaseManager db = new DatabaseManager();
             db.Connect();
             db.CrearSesion(patientId, DateTime.Today, tbComment.Text, anxietyScore);
+            db.ActualizarUltimaSesion(patientId, DateTime.Today);
             db.Disconnect();
+            MessageBox.Show("Nota clinica guardada!");
+            this.Close();
         }
         private int CalculateAnxietyScore()
         {
             int score = 0;
+            lbScore.Hide();
+            
             switch (comboBox1.Text)
             {
                 case "0 - Ninguna": score += 0;
@@ -102,6 +110,8 @@ namespace ProyectoFinalDINT
                     score += 10;
                     break;
             }
+            lbScore.Text += score;
+
             switch (comboBox2.Text)
             {
                 case "0 - Ninguna":
@@ -120,6 +130,8 @@ namespace ProyectoFinalDINT
                     score += 10;
                     break;
             }
+            lbScore.Text += score;
+
             switch (comboBox3.Text)
             {
                 case "0 - 60-80 bmp":
@@ -135,6 +147,7 @@ namespace ProyectoFinalDINT
                     score += 10;
                     break;
             }
+            lbScore.Text += score;
 
             return score;
         }

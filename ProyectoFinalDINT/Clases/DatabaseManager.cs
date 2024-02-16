@@ -377,6 +377,21 @@ public class DatabaseManager
 
         ExecuteNonQuery(query, parameters);
     }
+    public void ActualizarUltimaSesion(int pacienteId, DateTime fechaUltimaSesion)
+    {
+        string query = @"
+    UPDATE Pacientes 
+    SET ultima_sesion = @fechaUltimaSesion
+    WHERE paciente_id = @pacienteId";
+
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@pacienteId", pacienteId),
+        new MySqlParameter("@fechaUltimaSesion", fechaUltimaSesion)
+        };
+
+        ExecuteNonQuery(query, parameters);
+    }
 
 
     public void EliminarSesion(int sesionId)
@@ -386,6 +401,21 @@ public class DatabaseManager
         MySqlParameter[] parameters = new MySqlParameter[]
         {
         new MySqlParameter("@sesionId", sesionId)
+        };
+
+        ExecuteNonQuery(query, parameters);
+    }
+    public void ActualizarProximaCita(int pacienteId, DateTime proximaCita)
+    {
+        string query = @"
+        UPDATE Pacientes
+        SET proxima_sesion = @proximaCita
+        WHERE paciente_id = @pacienteId";
+
+        MySqlParameter[] parameters = new MySqlParameter[]
+        {
+        new MySqlParameter("@pacienteId", pacienteId),
+        new MySqlParameter("@proximaCita", proximaCita)
         };
 
         ExecuteNonQuery(query, parameters);

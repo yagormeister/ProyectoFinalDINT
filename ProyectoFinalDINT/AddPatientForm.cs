@@ -12,23 +12,39 @@ namespace ProyectoFinalDINT
 {
     public partial class AddPatientForm : Form
     {
-        private int? pacienteId = null;  // Campo opcional para almacenar el ID del paciente
 
-        public AddPatientForm(int pacienteId) : this()  // Llama al constructor predeterminado
-        {
-            InitializeComponent();
-            this.pacienteId = pacienteId;
-            CargarDatosPaciente(pacienteId);  // Carga los datos del paciente si se proporciona un ID
-        }
+        private int? pacienteId = null;  // Campo opcional para almacenar el ID del paciente
         public AddPatientForm()
         {
+            // Establece el estilo de borde del formulario para evitar el redimensionamiento
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // Deshabilita el botón de maximizar
+            this.MaximizeBox = false;
             InitializeComponent();
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        public AddPatientForm(int pacienteId)  // Llama al constructor predeterminado
         {
-
+            InitializeComponent();
+            if (pacienteId > 0)
+            {
+                // Si es una edición, realiza las acciones de edición
+                // Cambia el texto del botón Guardar a "Editar"
+                btAdd.Text = "Editar";
+                lbAddPatient.Text = "Edtiar paciente";
+                // Autocompleta los datos del paciente en los controles correspondientes
+                CargarDatosPaciente(pacienteId);
+            }
+            else
+            {
+                // Si es un nuevo paciente, deja el botón Guardar como "Guardar"
+                btAdd.Text = "Guardar";
+            }
         }
+
+
+
 
         private void btAdd_Click(object sender, EventArgs e)
         {
@@ -37,22 +53,22 @@ namespace ProyectoFinalDINT
             String nombre = tbName.Text;
             String apellidos= tbSurname.Text;
             String dNI = tbDNI.Text;
-            bool conversionExitosa = int.TryParse(tbPatientNumber.Text, out int numeroPaciente);  //comprobar si es int
-
-
-            DateTime fechaNacimiento = dateDOB.Value;
-            String comentarios = tbComments.Text;
-            PatientsForm patientsForm = new PatientsForm();
-
-            if (conversionExitosa)
+            if (dNI == null||dNI=="")
             {
-                db.CrearPaciente(nombre, apellidos,dNI,fechaNacimiento,0, null, null, comentarios);
-                db.Disconnect();
-                this.Close();
-                
+                MessageBox.Show("El DNI no puede estar vacio!");
             }
             else
-                MessageBox.Show("El numero de paciente tiene que ser un numero!");
+            {
+                DateTime fechaNacimiento = dateDOB.Value;
+                String comentarios = tbComments.Text;
+                PatientsForm patientsForm = new PatientsForm();
+                db.CrearPaciente(nombre, apellidos, dNI, fechaNacimiento, 0, null, null, comentarios);
+                db.Disconnect();
+                this.Close();
+            }
+
+
+                
         }
 
         private void btCancel_Click(object sender, EventArgs e)
@@ -68,17 +84,19 @@ namespace ProyectoFinalDINT
             if (datosPaciente.Rows.Count > 0)
             {
                 DataRow fila = datosPaciente.Rows[0];
-                tbName.Text = fila["nombre"].ToString();
-                tbSurname.Text = fila["apellidos"].ToString();
-                tbDNI.Text = fila["dni"].ToString();
+                lbPatientId.Text = fila.Field<int>("paciente_id").ToString();
+                tbName.Text = fila.Field<string>("nombre");
+                tbSurname.Text = fila.Field<string>("apellidos");
+                tbDNI.Text = fila.Field<string>("dni");
+
                 // Suponiendo que tienes un control para el número de paciente, lo configurarías aquí
                 // tbPatientNumber.Text = ...
-                dateDOB.Value = Convert.ToDateTime(fila["fecha_nacimiento"]);
-                tbComments.Text = fila["comentario"].ToString();
-                // Configura el campo del ID del paciente como solo lectura (si existe tal campo)
-                tbPatientNumber.ReadOnly = true;
+
+                dateDOB.Value = fila.Field<DateTime>("fecha_nacimiento");
+                tbComments.Text = fila.Field<string>("comentario");
             }
             db.Disconnect();
         }
+
     }
 }

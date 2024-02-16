@@ -15,6 +15,11 @@ namespace ProyectoFinalDINT
         DatabaseManager db = new DatabaseManager();
         public PatientsForm()
         {
+            // Establece el estilo de borde del formulario para evitar el redimensionamiento
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // Deshabilita el botón de maximizar
+            this.MaximizeBox = false;
             InitializeComponent();
             filtroPacientesControl1.FilterChanged += FiltroPacientesControl_FilterChanged;
 
@@ -32,7 +37,7 @@ namespace ProyectoFinalDINT
             dgvPatientTable.Columns.Add(deleteButtonColumn);
         }
 
-        private void dgvPatientTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvPatientTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -119,6 +124,8 @@ namespace ProyectoFinalDINT
                 deleteButtonColumn.Text = "Eliminar";
                 deleteButtonColumn.UseColumnTextForButtonValue = true;
                 dgvPatientTable.Columns.Add(deleteButtonColumn);
+
+
             }
             catch (Exception ex)
             {
@@ -156,7 +163,7 @@ namespace ProyectoFinalDINT
             actualizarTabla();
         }
 
-        private void dgvPatientTable_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvPatientTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Asegúrate de que el doble clic sea en una fila válida
             if (e.RowIndex >= 0)

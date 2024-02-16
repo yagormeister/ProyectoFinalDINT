@@ -83,8 +83,6 @@
       <DependentUpon>AddPatientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\DatabaseManager.cs" />
-    <Compile Include="Clases\Paciente.cs" />
-    <Compile Include="Clases\Usuario.cs" />
     <Compile Include="ControlCitas.cs">
       <SubType>UserControl</SubType>
     </Compile>

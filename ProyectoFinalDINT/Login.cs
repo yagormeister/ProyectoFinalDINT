@@ -15,8 +15,41 @@ namespace ProyectoFinalDINT
         public Login()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            ToolTip toolTip1 = new ToolTip();
+
+            // Configura el tiempo de duración de los ToolTips y el tiempo de espera antes de que se muestren
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+
+            // Permite que el ToolTip aparezca aunque el formulario esté inactivo
+            toolTip1.ShowAlways = true;
+
+            // Establece los ToolTips para varios controles
+            toolTip1.SetToolTip(this.tbName, "Introduce tu nombre de usuario.");
+            toolTip1.SetToolTip(this.tbPassword, "Introduce tu contraseña.");
+            toolTip1.SetToolTip(this.btnLogin, "Haz clic para iniciar sesión.");
+
         }
-        
+        private void Login_Load(object sender, EventArgs e)
+        {
+            ToolTip toolTip1 = new ToolTip();
+
+            // Configuraciones del ToolTip
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            toolTip1.ShowAlways = true;
+
+            // Establece los ToolTips
+            toolTip1.SetToolTip(this.tbName, "Introduce tu nombre de usuario.");
+            toolTip1.SetToolTip(this.tbPassword, "Introduce tu contraseña.");
+            toolTip1.SetToolTip(this.btnLogin, "Haz clic para iniciar sesión.");
+        }
+
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -46,7 +79,6 @@ namespace ProyectoFinalDINT
             else
             {
                 MessageBox.Show("EL usuario no existe!");
-                MessageBox.Show("Si eres Miguél, y estás aporreando el teclado, ya vale");
 
             }
             db.Disconnect();
@@ -54,5 +86,7 @@ namespace ProyectoFinalDINT
 
             
         }
+
+
     }
 }

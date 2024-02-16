@@ -15,6 +15,11 @@ namespace ProyectoFinalDINT
     {
         public SingupForm()
         {
+            // Establece el estilo de borde del formulario para evitar el redimensionamiento
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // Deshabilita el botón de maximizar
+            this.MaximizeBox = false;
             InitializeComponent();
         }
 

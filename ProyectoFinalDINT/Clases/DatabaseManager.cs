@@ -45,12 +45,17 @@ public class DatabaseManager
     public DataTable FiltrarPacientesConSesionManana()
     {
         DateTime manana = DateTime.Now.AddDays(1);
+        string formattedDate = manana.ToString("yyyy-MM-dd");
+
         string query = $@"
         SELECT * 
         FROM Pacientes 
         WHERE paciente_id IN 
-            (SELECT DISTINCT paciente_id FROM Sesion 
-             WHERE proxima_sesion = '{manana.ToString("yyyy-MM-dd")}' )";
+            (SELECT DISTINCT paciente_id 
+             FROM Sesion 
+             WHERE proxima_sesion >= '{formattedDate}' 
+             AND proxima_sesion < DATE_ADD('{formattedDate}', INTERVAL 1 DAY))";
+
         return ExecuteQuery(query);
     }
 
@@ -58,15 +63,21 @@ public class DatabaseManager
     {
         DateTime inicioSemana = DateTime.Now.AddDays(1);
         DateTime finSemana = DateTime.Now.AddDays(7);
+        string formattedInicioSemana = inicioSemana.ToString("yyyy-MM-dd");
+        string formattedFinSemana = finSemana.ToString("yyyy-MM-dd");
+
         string query = $@"
         SELECT * 
         FROM Pacientes 
         WHERE paciente_id IN 
-            (SELECT DISTINCT paciente_id FROM Sesion 
-             WHERE proxima_sesion BETWEEN '{inicioSemana.ToString("yyyy-MM-dd")}' 
-             AND '{finSemana.ToString("yyyy-MM-dd")}' )";
+            (SELECT DISTINCT paciente_id 
+             FROM Sesion 
+             WHERE proxima_sesion >= '{formattedInicioSemana}' 
+             AND proxima_sesion < DATE_ADD('{formattedFinSemana}', INTERVAL 1 DAY))";
+
         return ExecuteQuery(query);
     }
+
 
 
     //METODOS DE CONEXION
@@ -451,6 +462,7 @@ public class DatabaseManager
         {
         new MySqlParameter("@sesionId", sesionId)
         };
+        Console.WriteLine("Sesion eliminada");
 
         ExecuteNonQuery(query, parameters);
     }

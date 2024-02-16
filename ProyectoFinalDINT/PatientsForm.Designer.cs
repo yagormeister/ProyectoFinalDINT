@@ -35,8 +35,6 @@
             this.dgvPatientTable = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.btDelete = new System.Windows.Forms.Button();
-            this.btEdit = new System.Windows.Forms.Button();
             this.filtroPacientesControl1 = new ProyectoFinalDINT.FiltroPacientesControl();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatientTable)).BeginInit();
@@ -69,18 +67,19 @@
             this.dgvPatientTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvPatientTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dgvPatientTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
+            this.dgvPatientTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvPatientTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvPatientTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(247)))), ((int)(((byte)(166)))));
             this.dgvPatientTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvPatientTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPatientTable.Location = new System.Drawing.Point(12, 79);
             this.dgvPatientTable.Name = "dgvPatientTable";
             this.dgvPatientTable.ReadOnly = true;
             this.dgvPatientTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPatientTable.Size = new System.Drawing.Size(817, 280);
+            this.dgvPatientTable.Size = new System.Drawing.Size(889, 280);
             this.dgvPatientTable.TabIndex = 2;
-            this.dgvPatientTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatientTable_CellContentClick);
-            this.dgvPatientTable.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatientTable_CellContentDoubleClick);
+            this.dgvPatientTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatientTable_CellClick);
+            this.dgvPatientTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatientTable_CellDoubleClick);
             // 
             // button1
             // 
@@ -102,26 +101,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // btDelete
-            // 
-            this.btDelete.Location = new System.Drawing.Point(832, 79);
-            this.btDelete.Name = "btDelete";
-            this.btDelete.Size = new System.Drawing.Size(101, 23);
-            this.btDelete.TabIndex = 7;
-            this.btDelete.Text = "Eliminar Paciente";
-            this.btDelete.UseVisualStyleBackColor = true;
-            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
-            // 
-            // btEdit
-            // 
-            this.btEdit.Location = new System.Drawing.Point(939, 79);
-            this.btEdit.Name = "btEdit";
-            this.btEdit.Size = new System.Drawing.Size(95, 23);
-            this.btEdit.TabIndex = 8;
-            this.btEdit.Text = "Editar Paciente";
-            this.btEdit.UseVisualStyleBackColor = true;
-            this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
-            // 
             // filtroPacientesControl1
             // 
             this.filtroPacientesControl1.Location = new System.Drawing.Point(12, 49);
@@ -133,10 +112,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(247)))), ((int)(((byte)(166)))));
             this.ClientSize = new System.Drawing.Size(1048, 450);
             this.Controls.Add(this.filtroPacientesControl1);
-            this.Controls.Add(this.btEdit);
-            this.Controls.Add(this.btDelete);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvPatientTable);
@@ -158,8 +136,6 @@
         private System.Windows.Forms.DataGridView dgvPatientTable;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btDelete;
-        private System.Windows.Forms.Button btEdit;
         private FiltroPacientesControl filtroPacientesControl1;
     }
 }

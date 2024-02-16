@@ -14,29 +14,44 @@ namespace ProyectoFinalDINT
 {
     public partial class MainForm : Form
     {
+        private bool columnsAdded = false;  // Agrega una variable de clase para rastrear si las columnas ya han sido agregadas
+
         DatabaseManager db = new DatabaseManager();
 
 
         public MainForm()
         {
+            // Establece el estilo de borde del formulario para evitar el redimensionamiento
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // Deshabilita el botón de maximizar
+            this.MaximizeBox = false;
             InitializeComponent();
             btAtras.Visible = false; // Asegúrate de inicializar el botón Atrás como no visible
             btAtras.Click += btAtras_Click; // Agrega el manejador de eventos al botón Atrás
-            ActualizarChart();
-            // Agregar las columnas de botones al final de dgvSessions
-            DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
-            editButtonColumn.HeaderText = "Editar";
-            editButtonColumn.Text = "Editar";
-            editButtonColumn.UseColumnTextForButtonValue = true;
-            dgvSessions.Columns.Add(editButtonColumn);
+            //ActualizarChart();
+            dgvSessions.CellContentClick += dgvSessions_CellClick;
 
-            DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
-            deleteButtonColumn.HeaderText = "Eliminar";
-            deleteButtonColumn.Text = "Eliminar";
-            deleteButtonColumn.UseColumnTextForButtonValue = true;
-            dgvSessions.Columns.Add(deleteButtonColumn);
             ConfigurarGrafica();
+            // Instanciar ToolTip y configurar mensajes de ayuda
+            ToolTip toolTip1 = new ToolTip
+            {
+                AutoPopDelay = 5000,
+                InitialDelay = 1000,
+                ReshowDelay = 500,
+                ShowAlways = true
+            };
+
+            // Establece los ToolTips para los controles
+            toolTip1.SetToolTip(this.btAtras, "Volver a la pantalla anterior.");
+            toolTip1.SetToolTip(this.btAddNewProgres, "Añadir un nuevo registro de progreso para el paciente.");
+            toolTip1.SetToolTip(this.dgvSessions, "Ver detalles de las sesiones. Haz doble clic en una sesión para editar.");
+            toolTip1.SetToolTip(this.btBack, "Regresar a la pantalla de selección de pacientes.");
+            toolTip1.SetToolTip(this.btExit, "Cerrar sesión y volver a la pantalla de inicio.");
+            toolTip1.SetToolTip(this.btNuevaCita, "Programar una nueva cita para el paciente.");
+            toolTip1.SetToolTip(this.progressChart, "Gráfico de progreso del paciente. Haz clic para más detalles.");
         }
+
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -45,6 +60,25 @@ namespace ProyectoFinalDINT
             ActualizarChart();
             CargarDatosEnProgressChart(id_paciente);
 
+            // Agrega las columnas de botones solo si no se han agregado previamente
+            if (!columnsAdded)
+            {
+                DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
+                editButtonColumn.HeaderText = "Editar";
+                editButtonColumn.Text = "Editar";
+                editButtonColumn.Name = "Editar";
+                editButtonColumn.UseColumnTextForButtonValue = true;
+                dgvSessions.Columns.Add(editButtonColumn);
+
+                DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
+                deleteButtonColumn.HeaderText = "Eliminar";
+                deleteButtonColumn.Text = "Eliminar";
+                deleteButtonColumn.Name = "Eliminar";
+                deleteButtonColumn.UseColumnTextForButtonValue = true;
+                dgvSessions.Columns.Add(deleteButtonColumn);
+
+                columnsAdded = true;  // Marca que las columnas han sido agregadas
+            }
         }
 
 
@@ -161,7 +195,7 @@ namespace ProyectoFinalDINT
 
         }
 
-        private void dgvSessions_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvSessions_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -176,36 +210,37 @@ namespace ProyectoFinalDINT
                 ActualizarChart();
             }
         }
-        private void dgvSessions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvSessions_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgvSessions.Columns["Editar"].Index)
+            if (e.RowIndex >= 0)
             {
-                // Manejar el evento de clic en el botón "Editar" aquí
-                // Puedes obtener el ID de la sesión seleccionada usando:
+                // Obtén el ID de la sesión seleccionada
                 var sesionId = Convert.ToInt32(dgvSessions.Rows[e.RowIndex].Cells["sesion_id"].Value);
-                // Luego puedes realizar las acciones necesarias para editar la sesión
-                // Por ejemplo, abrir un formulario de edición pasando el sesionId.
-                PatientProgressForm p = new PatientProgressForm(sesionId);
-                p.PatientID = lbPatientNumberRecovered.Text;
-                p.ShowDialog();
-                ActualizarChart();
-            }
-            else if (e.RowIndex >= 0 && e.ColumnIndex == dgvSessions.Columns["Eliminar"].Index)
-            {
-                // Manejar el evento de clic en el botón "Eliminar" aquí
-                // Puedes obtener el ID de la sesión seleccionada usando:
-                var sesionId = Convert.ToInt32(dgvSessions.Rows[e.RowIndex].Cells["sesion_id"].Value);
-                // Luego puedes realizar las acciones necesarias para eliminar la sesión
-                // Por ejemplo, mostrar un cuadro de diálogo de confirmación y eliminar la sesión si es confirmado.
-                DialogResult result = MessageBox.Show("¿Estás seguro de eliminar esta sesión?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
+
+                // Verifica si el clic fue en la columna "Editar"
+                if (e.ColumnIndex == dgvSessions.Columns["Editar"].Index)
                 {
-                    // Agrega el código para eliminar la sesión
-                    // Por ejemplo, db.EliminarSesion(sesionId);
-                    ActualizarChart(); // Actualiza el gráfico después de eliminar la sesión
+                    // Abre el formulario de progreso de paciente para editar la sesión
+                    PatientProgressForm p = new PatientProgressForm(sesionId);
+                    p.PatientID = lbPatientNumberRecovered.Text;
+                    p.ShowDialog();
+                    ActualizarChart();
+                }
+                else if (e.ColumnIndex == dgvSessions.Columns["Eliminar"].Index)
+                {
+                    // Muestra un cuadro de diálogo de confirmación para eliminar la sesión
+                    DialogResult result = MessageBox.Show("¿Estás seguro de eliminar esta sesión?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        db.Connect();
+                        db.EliminarSesion(sesionId);
+                        db.Disconnect();
+                        ActualizarChart(); // Actualiza el gráfico después de eliminar la sesión
+                    }
                 }
             }
         }
+
 
 
 
@@ -241,6 +276,7 @@ namespace ProyectoFinalDINT
                 lbNameRecovered.Text = row["nombre"].ToString();
                 lbSurnameRecovered.Text = row["apellidos"].ToString();
                 lbDNIRecovered.Text = row["dni"].ToString();
+                lbPatientNumberRecovered.Text = row["paciente_id"].ToString() ;
                 lbDOBRecovered.Text = Convert.ToDateTime(row["fecha_nacimiento"]).ToString("dd/MM/yyyy"); // Formatear la fecha según sea necesario
                                                                                                           // Continúa para los demás Labels que necesites poblar
             }
@@ -249,6 +285,11 @@ namespace ProyectoFinalDINT
                 MessageBox.Show("Error al leer el paciente!");
             }
             dgvSessions.DataSource = sesiones;
+            dgvSessions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvSessions.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvSessions.ClientSize = dgvSessions.PreferredSize;
+
+
 
         }
 
@@ -351,5 +392,8 @@ namespace ProyectoFinalDINT
 
 
         }
+
+
+
     }
 }

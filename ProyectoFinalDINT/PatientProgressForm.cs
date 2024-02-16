@@ -13,12 +13,18 @@ namespace ProyectoFinalDINT
 
     public partial class PatientProgressForm : Form
     {
+
         public string PatientID { set { lbPatient_id.Text = value; } }
         public int? SesionID { get; set; } // Añade esta línea
 
 
         public PatientProgressForm()
         {
+            // Establece el estilo de borde del formulario para evitar el redimensionamiento
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // Deshabilita el botón de maximizar
+            this.MaximizeBox = false;
             InitializeComponent();
             // Initialize event handlers for the ComboBoxes
            comboBox1.SelectedIndexChanged += ComboBox_SelectedIndexChanged;

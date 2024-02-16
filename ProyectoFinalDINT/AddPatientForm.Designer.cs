@@ -32,17 +32,17 @@
             this.lbName = new System.Windows.Forms.Label();
             this.lbSurname = new System.Windows.Forms.Label();
             this.lbDNI = new System.Windows.Forms.Label();
-            this.lbPatientNumber = new System.Windows.Forms.Label();
             this.lbDOB = new System.Windows.Forms.Label();
             this.lbComments = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbSurname = new System.Windows.Forms.TextBox();
             this.tbDNI = new System.Windows.Forms.TextBox();
-            this.tbPatientNumber = new System.Windows.Forms.TextBox();
             this.dateDOB = new System.Windows.Forms.DateTimePicker();
             this.tbComments = new System.Windows.Forms.TextBox();
             this.btAdd = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lbPatientId = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbAddPatient
@@ -57,7 +57,7 @@
             // lbName
             // 
             this.lbName.AutoSize = true;
-            this.lbName.Location = new System.Drawing.Point(40, 95);
+            this.lbName.Location = new System.Drawing.Point(40, 123);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(44, 13);
             this.lbName.TabIndex = 1;
@@ -66,7 +66,7 @@
             // lbSurname
             // 
             this.lbSurname.AutoSize = true;
-            this.lbSurname.Location = new System.Drawing.Point(43, 145);
+            this.lbSurname.Location = new System.Drawing.Point(43, 173);
             this.lbSurname.Name = "lbSurname";
             this.lbSurname.Size = new System.Drawing.Size(49, 13);
             this.lbSurname.TabIndex = 2;
@@ -75,26 +75,16 @@
             // lbDNI
             // 
             this.lbDNI.AutoSize = true;
-            this.lbDNI.Location = new System.Drawing.Point(43, 195);
+            this.lbDNI.Location = new System.Drawing.Point(43, 223);
             this.lbDNI.Name = "lbDNI";
             this.lbDNI.Size = new System.Drawing.Size(26, 13);
             this.lbDNI.TabIndex = 3;
             this.lbDNI.Text = "DNI";
             // 
-            // lbPatientNumber
-            // 
-            this.lbPatientNumber.AutoSize = true;
-            this.lbPatientNumber.Location = new System.Drawing.Point(43, 239);
-            this.lbPatientNumber.Name = "lbPatientNumber";
-            this.lbPatientNumber.Size = new System.Drawing.Size(64, 13);
-            this.lbPatientNumber.TabIndex = 4;
-            this.lbPatientNumber.Text = "Nº Paciente";
-            this.lbPatientNumber.Click += new System.EventHandler(this.label4_Click);
-            // 
             // lbDOB
             // 
             this.lbDOB.AutoSize = true;
-            this.lbDOB.Location = new System.Drawing.Point(46, 280);
+            this.lbDOB.Location = new System.Drawing.Point(43, 260);
             this.lbDOB.Name = "lbDOB";
             this.lbDOB.Size = new System.Drawing.Size(91, 13);
             this.lbDOB.TabIndex = 5;
@@ -103,7 +93,7 @@
             // lbComments
             // 
             this.lbComments.AutoSize = true;
-            this.lbComments.Location = new System.Drawing.Point(43, 319);
+            this.lbComments.Location = new System.Drawing.Point(43, 308);
             this.lbComments.Name = "lbComments";
             this.lbComments.Size = new System.Drawing.Size(65, 13);
             this.lbComments.TabIndex = 6;
@@ -111,42 +101,35 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(168, 82);
+            this.tbName.Location = new System.Drawing.Point(168, 110);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(100, 20);
             this.tbName.TabIndex = 7;
             // 
             // tbSurname
             // 
-            this.tbSurname.Location = new System.Drawing.Point(168, 132);
+            this.tbSurname.Location = new System.Drawing.Point(168, 160);
             this.tbSurname.Name = "tbSurname";
             this.tbSurname.Size = new System.Drawing.Size(100, 20);
             this.tbSurname.TabIndex = 8;
             // 
             // tbDNI
             // 
-            this.tbDNI.Location = new System.Drawing.Point(168, 182);
+            this.tbDNI.Location = new System.Drawing.Point(168, 210);
             this.tbDNI.Name = "tbDNI";
             this.tbDNI.Size = new System.Drawing.Size(100, 20);
             this.tbDNI.TabIndex = 9;
             // 
-            // tbPatientNumber
-            // 
-            this.tbPatientNumber.Location = new System.Drawing.Point(168, 232);
-            this.tbPatientNumber.Name = "tbPatientNumber";
-            this.tbPatientNumber.Size = new System.Drawing.Size(100, 20);
-            this.tbPatientNumber.TabIndex = 10;
-            // 
             // dateDOB
             // 
-            this.dateDOB.Location = new System.Drawing.Point(168, 272);
+            this.dateDOB.Location = new System.Drawing.Point(165, 252);
             this.dateDOB.Name = "dateDOB";
             this.dateDOB.Size = new System.Drawing.Size(200, 20);
             this.dateDOB.TabIndex = 11;
             // 
             // tbComments
             // 
-            this.tbComments.Location = new System.Drawing.Point(168, 311);
+            this.tbComments.Location = new System.Drawing.Point(168, 300);
             this.tbComments.Multiline = true;
             this.tbComments.Name = "tbComments";
             this.tbComments.Size = new System.Drawing.Size(376, 127);
@@ -154,7 +137,7 @@
             // 
             // btAdd
             // 
-            this.btAdd.Location = new System.Drawing.Point(630, 308);
+            this.btAdd.Location = new System.Drawing.Point(599, 308);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(120, 24);
             this.btAdd.TabIndex = 13;
@@ -164,7 +147,7 @@
             // 
             // btCancel
             // 
-            this.btCancel.Location = new System.Drawing.Point(630, 376);
+            this.btCancel.Location = new System.Drawing.Point(599, 376);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 14;
@@ -172,22 +155,42 @@
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(46, 71);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Id Paciente";
+            this.label1.Visible = false;
+            // 
+            // lbPatientId
+            // 
+            this.lbPatientId.AutoSize = true;
+            this.lbPatientId.Location = new System.Drawing.Point(165, 71);
+            this.lbPatientId.Name = "lbPatientId";
+            this.lbPatientId.Size = new System.Drawing.Size(0, 13);
+            this.lbPatientId.TabIndex = 16;
+            this.lbPatientId.Visible = false;
+            // 
             // AddPatientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(247)))), ((int)(((byte)(166)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbPatientId);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.tbComments);
             this.Controls.Add(this.dateDOB);
-            this.Controls.Add(this.tbPatientNumber);
             this.Controls.Add(this.tbDNI);
             this.Controls.Add(this.tbSurname);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.lbComments);
             this.Controls.Add(this.lbDOB);
-            this.Controls.Add(this.lbPatientNumber);
             this.Controls.Add(this.lbDNI);
             this.Controls.Add(this.lbSurname);
             this.Controls.Add(this.lbName);
@@ -205,16 +208,16 @@
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label lbSurname;
         private System.Windows.Forms.Label lbDNI;
-        private System.Windows.Forms.Label lbPatientNumber;
         private System.Windows.Forms.Label lbDOB;
         private System.Windows.Forms.Label lbComments;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbSurname;
         private System.Windows.Forms.TextBox tbDNI;
-        private System.Windows.Forms.TextBox tbPatientNumber;
         private System.Windows.Forms.DateTimePicker dateDOB;
         private System.Windows.Forms.TextBox tbComments;
         private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Button btCancel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbPatientId;
     }
 }

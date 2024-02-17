@@ -275,9 +275,9 @@ public class DatabaseManager
          new MySqlParameter("@comentario", comentario)
          });
      }*/
-    public void ActualizarPaciente(int pacienteId, string nombre, string apellidos, string dni, DateTime fechaNacimiento, int sesiones, DateTime? ultimaSesion, DateTime? proximaSesion, string comentario)
+    public void ActualizarPaciente(int pacienteId, string nombre, string apellidos, string dni, DateTime fechaNacimiento, DateTime? ultimaSesion, DateTime? proximaSesion, string comentario)
     {
-        string query = "UPDATE Pacientes SET nombre = @nombre, apellidos = @apellidos, dni = @dni, fecha_nacimiento = @fechaNacimiento, sesiones = @sesiones, ultima_sesion = @ultimaSesion, proxima_sesion = @proximaSesion, comentario = @comentario WHERE paciente_id = @pacienteId";
+        string query = "UPDATE Pacientes SET nombre = @nombre, apellidos = @apellidos, dni = @dni, fecha_nacimiento = @fechaNacimiento, ultima_sesion = @ultimaSesion, proxima_sesion = @proximaSesion, comentario = @comentario WHERE paciente_id = @pacienteId";
 
         List<MySqlParameter> parameters = new List<MySqlParameter>
     {
@@ -286,7 +286,6 @@ public class DatabaseManager
         new MySqlParameter("@apellidos", apellidos),
         new MySqlParameter("@dni", dni),
         new MySqlParameter("@fechaNacimiento", fechaNacimiento),
-        new MySqlParameter("@sesiones", sesiones),
         new MySqlParameter("@comentario", comentario),
         new MySqlParameter("@ultimaSesion", (object)ultimaSesion ?? DBNull.Value),
         new MySqlParameter("@proximaSesion", (object)proximaSesion ?? DBNull.Value)
@@ -328,6 +327,7 @@ public class DatabaseManager
 
     public DataTable LeerPasswordDeUsuario(string username)
     {
+        // La consulta SQL busca la contraseña donde el nombre de usuario coincida con el proporcionado
         string query = "SELECT password FROM UsuariosPrograma WHERE username = @username";
         MySqlParameter[] parameters = new MySqlParameter[]
         {

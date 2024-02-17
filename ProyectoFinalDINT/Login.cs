@@ -62,7 +62,7 @@ namespace ProyectoFinalDINT
             DatabaseManager db = new DatabaseManager();
             db.Connect();
             String usuarioLeido = db.SeleccionarPrimerResultado(db.LeerUsuario(tbName.Text));
-            String passLeida = db.SeleccionarPrimerResultado(db.LeerPasswordDeUsuario(tbPassword.Text));
+            String passLeida = db.SeleccionarPrimerResultado(db.LeerPasswordDeUsuario(tbName.Text));
             String usuarioIntroducido = tbName.Text;
             String passwordIntroducida = tbPassword.Text;
             if (!String.IsNullOrWhiteSpace(usuarioLeido))
@@ -79,12 +79,11 @@ namespace ProyectoFinalDINT
             else
             {
                 MessageBox.Show("EL usuario no existe!");
-
             }
             db.Disconnect();
 
 
-            
+
         }
 
 

@@ -13,7 +13,8 @@ namespace ProyectoFinalDINT
     public partial class AddPatientForm : Form
     {
 
-        private int? pacienteId = null;  // Campo opcional para almacenar el ID del paciente
+        private int pacienteId = 0;  // Campo opcional para almacenar el ID del paciente
+        private Boolean edit = false;
         public AddPatientForm()
         {
             // Establece el estilo de borde del formulario para evitar el redimensionamiento
@@ -26,6 +27,8 @@ namespace ProyectoFinalDINT
 
         public AddPatientForm(int pacienteId)  // Llama al constructor predeterminado
         {
+            edit = true;
+            this.pacienteId = pacienteId;
             InitializeComponent();
             if (pacienteId > 0)
             {
@@ -61,8 +64,15 @@ namespace ProyectoFinalDINT
             {
                 DateTime fechaNacimiento = dateDOB.Value;
                 String comentarios = tbComments.Text;
-                PatientsForm patientsForm = new PatientsForm();
-                db.CrearPaciente(nombre, apellidos, dNI, fechaNacimiento, 0, null, null, comentarios);
+                //PatientsForm patientsForm = new PatientsForm();
+                if (edit)
+                {
+                    db.ActualizarPaciente(pacienteId, nombre, apellidos, dNI, fechaNacimiento, null, null, comentarios);
+                }
+                else
+                {
+                    db.CrearPaciente(nombre, apellidos, dNI, fechaNacimiento, 0, null, null, comentarios);
+                }
                 db.Disconnect();
                 this.Close();
             }

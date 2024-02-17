@@ -31,6 +31,8 @@ namespace ProyectoFinalDINT
             btAtras.Click += btAtras_Click; // Agrega el manejador de eventos al botón Atrás
             //ActualizarChart();
             dgvSessions.CellContentClick += dgvSessions_CellClick;
+            dgvSessions.AllowUserToAddRows = false;
+
 
             ConfigurarGrafica();
             // Instanciar ToolTip y configurar mensajes de ayuda
@@ -63,7 +65,7 @@ namespace ProyectoFinalDINT
             // Agrega las columnas de botones solo si no se han agregado previamente
             if (!columnsAdded)
             {
-                DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
+               DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
                 editButtonColumn.HeaderText = "Editar";
                 editButtonColumn.Text = "Editar";
                 editButtonColumn.Name = "Editar";
@@ -277,8 +279,7 @@ namespace ProyectoFinalDINT
                 lbSurnameRecovered.Text = row["apellidos"].ToString();
                 lbDNIRecovered.Text = row["dni"].ToString();
                 lbPatientNumberRecovered.Text = row["paciente_id"].ToString() ;
-                lbDOBRecovered.Text = Convert.ToDateTime(row["fecha_nacimiento"]).ToString("dd/MM/yyyy"); // Formatear la fecha según sea necesario
-                                                                                                          // Continúa para los demás Labels que necesites poblar
+                lbDOBRecovered.Text = Convert.ToDateTime(row["fecha_nacimiento"]).ToString("dd/MM/yyyy"); 
             }
             else
             {
@@ -328,31 +329,7 @@ namespace ProyectoFinalDINT
                 flowLayoutPanel1.Controls.Add(pictureBox);
             }
         }
-        private Panel CreateVideoPanel(DataRow video)
-        {
-            Panel videoPanel = new Panel
-            {
-                Width = flowLayoutPanel1.Width - 20,
-                Height = 100,
-                Padding = new Padding(5),
-                BorderStyle = BorderStyle.FixedSingle,
-                Tag = video["titulo"].ToString()
-            };
 
-            videoPanel.Click += PictureBoxVideo_Click;
-            videoPanel.MouseEnter += (sender, e) => videoPanel.BackColor = Color.LightGray;
-            videoPanel.MouseLeave += (sender, e) => videoPanel.BackColor = Color.Transparent;
-
-            Label titleLabel = new Label { Text = video["titulo"].ToString(), AutoSize = true, Font = new Font("Arial", 10, FontStyle.Bold) };
-            Label durationLabel = new Label { Text = $"Duración: {video["duracion"].ToString()}", AutoSize = true, Font = new Font("Arial", 8) };
-            Label descriptionLabel = new Label { Text = video["descripcion"].ToString(), AutoSize = true, Font = new Font("Arial", 8) };
-
-            videoPanel.Controls.Add(titleLabel);
-            videoPanel.Controls.Add(durationLabel);
-            videoPanel.Controls.Add(descriptionLabel);
-
-            return videoPanel;
-        }
 
         private void btBack_Click(object sender, EventArgs e)
         {

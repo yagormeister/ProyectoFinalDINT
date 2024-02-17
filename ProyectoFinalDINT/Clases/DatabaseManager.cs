@@ -145,18 +145,6 @@ public class DatabaseManager
         }
         return dataTable;
     }
-    public List<string> ConvertirDataTableALista(DataTable dataTable)
-    {
-        List<string> lista = new List<string>();
-
-        foreach (DataRow row in dataTable.Rows)
-        {
-            // Asumiendo que quieres convertir la primera columna en string
-            lista.Add(row[0].ToString());
-        }
-
-        return lista;
-    }
 
     public string SeleccionarPrimerResultado(DataTable dataTable)
     {
@@ -195,33 +183,6 @@ public class DatabaseManager
 
 
 
-
-
-    // CRUD Operations para Pacientes
-    /*public void CrearPaciente(string nombre, string apellidos, string dni, DateTime fechaNacimiento, string comentario)
-    {
-        string query = "INSERT INTO Pacientes (nombre, apellidos, dni, fecha_nacimiento, comentario) VALUES (@nombre, @apellidos, @dni, @fechaNacimiento, @comentario)";
-        ExecuteNonQuery(query, new MySqlParameter[]
-        {
-            new MySqlParameter("@nombre", nombre),
-            new MySqlParameter("@apellidos", apellidos),
-            new MySqlParameter("@dni", dni),
-            new MySqlParameter("@fechaNacimiento", fechaNacimiento),
-            new MySqlParameter("@comentario", comentario)
-        });
-    }
-    public void CrearPaciente(string nombre, string apellidos, string dni, string fechaNacimiento, string comentario)
-    {
-        string query = "INSERT INTO Pacientes (nombre, apellidos, dni, fecha_nacimiento, comentario) VALUES (@nombre, @apellidos, @dni, @fechaNacimiento, @comentario)";
-        ExecuteNonQuery(query, new MySqlParameter[]
-        {
-            new MySqlParameter("@nombre", nombre),
-            new MySqlParameter("@apellidos", apellidos),
-            new MySqlParameter("@dni", dni),
-            new MySqlParameter("@fechaNacimiento", fechaNacimiento),
-            new MySqlParameter("@comentario", comentario)
-        });
-    }*/
     public void CrearPaciente(string nombre, string apellidos, string dni, DateTime fechaNacimiento, int sesiones, DateTime? ultimaSesion, DateTime? proximaSesion, string comentario)
     {
         string query = "INSERT INTO Pacientes (nombre, apellidos, dni, fecha_nacimiento, sesiones, ultima_sesion, proxima_sesion, comentario) VALUES (@nombre, @apellidos, @dni, @fechaNacimiento, @sesiones, @ultimaSesion, @proximaSesion, @comentario)";
@@ -261,20 +222,6 @@ public class DatabaseManager
         return ExecuteQuery(query);
     }
 
-
-    /* public void ActualizarPaciente(int pacienteId, string nombre, string apellidos, string dni, DateTime fechaNacimiento, string comentario)
-     {
-         string query = "UPDATE Pacientes SET nombre = @nombre, apellidos = @apellidos, dni = @dni, fecha_nacimiento = @fechaNacimiento, comentario = @comentario WHERE paciente_id = @pacienteId";
-         ExecuteNonQuery(query, new MySqlParameter[]
-         {
-         new MySqlParameter("@pacienteId", pacienteId),
-         new MySqlParameter("@nombre", nombre),
-         new MySqlParameter("@apellidos", apellidos),
-         new MySqlParameter("@dni", dni),
-         new MySqlParameter("@fechaNacimiento", fechaNacimiento),
-         new MySqlParameter("@comentario", comentario)
-         });
-     }*/
     public void ActualizarPaciente(int pacienteId, string nombre, string apellidos, string dni, DateTime fechaNacimiento, DateTime? ultimaSesion, DateTime? proximaSesion, string comentario)
     {
         string query = "UPDATE Pacientes SET nombre = @nombre, apellidos = @apellidos, dni = @dni, fecha_nacimiento = @fechaNacimiento, ultima_sesion = @ultimaSesion, proxima_sesion = @proximaSesion, comentario = @comentario WHERE paciente_id = @pacienteId";
@@ -334,24 +281,6 @@ public class DatabaseManager
         new MySqlParameter("@username", username)
         };
         return ExecuteQuery(query, parameters);
-    }
-
-
-    public void ActualizarUsuario(string username, string newPassword)
-    {
-        string query = "UPDATE UsuariosPrograma SET password = @newPassword WHERE username = @username";
-        ExecuteNonQuery(query, new MySqlParameter[] {
-            new MySqlParameter("@username", username),
-            new MySqlParameter("@newPassword", newPassword)
-        });
-    }
-
-    public void EliminarUsuario(string username)
-    {
-        string query = "DELETE FROM UsuariosPrograma WHERE username = @username";
-        ExecuteNonQuery(query, new MySqlParameter[] {
-            new MySqlParameter("@username", username)
-        });
     }
 
 
@@ -420,23 +349,6 @@ public class DatabaseManager
         return ExecuteQuery(query, parameters);
     }
 
-    public void ActualizarSesion(int sesionId, DateTime fechaSesion, string comentario, int anxietyScore)
-    {
-        string query = @"
-        UPDATE Sesion
-        SET fecha_sesion = @fechaSesion, comentario = @comentario, anxiety_score = @anxietyScore
-        WHERE sesion_id = @sesionId";
-
-        MySqlParameter[] parameters = new MySqlParameter[]
-        {
-        new MySqlParameter("@sesionId", sesionId),
-        new MySqlParameter("@fechaSesion", fechaSesion),
-        new MySqlParameter("@comentario", comentario),
-        new MySqlParameter("@anxietyScore", anxietyScore)
-        };
-
-        ExecuteNonQuery(query, parameters);
-    }
     public void ActualizarUltimaSesion(int pacienteId, DateTime fechaUltimaSesion)
     {
         string query = @"
@@ -515,23 +427,6 @@ public class DatabaseManager
 
 
     //VIDEOS
-    public void CrearVideo(string titulo, TimeSpan duracion, string categoria, string descripcion)
-    {
-        string query = "INSERT INTO Videos (titulo, duracion, categoria, descripcion) VALUES (@titulo, @duracion, @categoria, @descripcion)";
-        ExecuteNonQuery(query, new MySqlParameter[]
-        {
-        new MySqlParameter("@titulo", titulo),
-        new MySqlParameter("@duracion", duracion.ToString()),
-        new MySqlParameter("@categoria", categoria),
-        new MySqlParameter("@descripcion", descripcion)
-        });
-    }
-
-    public DataTable LeerVideos()
-    {
-        string query = "SELECT video_id, titulo, duracion, categoria, descripcion FROM Videos";
-        return ExecuteQuery(query);
-    }
 
     public DataTable ObtenerVideosPorCategoria(string categoria)
     {
@@ -545,26 +440,6 @@ public class DatabaseManager
     }
 
 
-    public void ActualizarVideo(int videoId, string nuevoTitulo, TimeSpan nuevaDuracion, string nuevaCategoria, string nuevaDescripcion)
-    {
-        string query = "UPDATE Videos SET titulo = @nuevoTitulo, duracion = @nuevaDuracion, categoria = @nuevaCategoria, descripcion = @nuevaDescripcion WHERE video_id = @videoId";
-        ExecuteNonQuery(query, new MySqlParameter[]
-        {
-        new MySqlParameter("@videoId", videoId),
-        new MySqlParameter("@nuevoTitulo", nuevoTitulo),
-        new MySqlParameter("@nuevaDuracion", nuevaDuracion.ToString()),
-        new MySqlParameter("@nuevaCategoria", nuevaCategoria),
-        new MySqlParameter("@nuevaDescripcion", nuevaDescripcion)
-        });
-    }
-
-    public void EliminarVideo(int videoId)
-    {
-        string query = "DELETE FROM Videos WHERE video_id = @videoId";
-        ExecuteNonQuery(query, new MySqlParameter[]
-        {
-        new MySqlParameter("@videoId", videoId)
-        });
-    }
+   
 
 }

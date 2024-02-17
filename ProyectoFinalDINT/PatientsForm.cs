@@ -10,8 +10,15 @@ using System.Windows.Forms;
 
 namespace ProyectoFinalDINT
 {
+    /// <summary>
+    /// Formulario para visualizar y gestionar la lista de pacientes.
+    /// </summary>
     public partial class PatientsForm : Form
     {
+
+        /// <summary>
+        /// Instancia del gestor de la base de datos para realizar operaciones de datos.
+        /// </summary>
         DatabaseManager db = new DatabaseManager();
         public PatientsForm()
         {

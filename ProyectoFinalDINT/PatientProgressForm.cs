@@ -13,11 +13,21 @@ namespace ProyectoFinalDINT
 
     public partial class PatientProgressForm : Form
     {
-
+        /// <summary>
+        /// Formulario para visualizar y registrar el progreso de un paciente.
+        /// </summary>
+        /// <summary>
+        /// Establece el ID del paciente para el formulario.
+        /// </summary>
         public string PatientID { set { lbPatient_id.Text = value; } }
+        /// <summary>
+        /// Opcional: ID de la sesión para cargar datos existentes.
+        /// </summary>
         public int? SesionID { get; set; } // Añade esta línea
 
-
+        /// <summary>
+        /// Constructor por defecto que inicializa el formulario y sus componentes.
+        /// </summary>
         public PatientProgressForm()
         {
             // Establece el estilo de borde del formulario para evitar el redimensionamiento
@@ -40,10 +50,13 @@ namespace ProyectoFinalDINT
 
         }
         //CONSTRUCTOR EXTRA
+        /// <summary>
+        /// Constructor que acepta un ID de sesión para cargar datos de una sesión existente.
+        /// </summary>
+        /// <param name="sesionId">El ID de la sesión a cargar.</param>
         public PatientProgressForm(int sesionId)
         {
             InitializeComponent();
-            // Initialize event handlers for the ComboBoxes
             comboBox1.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
             comboBox2.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
             comboBox3.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
@@ -51,12 +64,16 @@ namespace ProyectoFinalDINT
             CargarDatosSesion(sesionId);
             EstablecerModoSoloLectura();
         }
+        /// <summary>
+        /// Carga los datos de la sesión especificada por ID.
+        /// </summary>
+        /// <param name="sesionId">ID de la sesión a cargar.</param>
         private void CargarDatosSesion(int sesionId)
         {
-            DatabaseManager db = new DatabaseManager(); // Asume que tienes un constructor predeterminado o configura los parámetros según sea necesario
+            DatabaseManager db = new DatabaseManager();
             db.Connect();
 
-            DataTable sesionData = db.LeerSesionPorId(sesionId); // Asume que este método existe y devuelve los datos de la sesión como DataTable
+            DataTable sesionData = db.LeerSesionPorId(sesionId);
 
             if (sesionData.Rows.Count > 0)
             {
@@ -65,16 +82,13 @@ namespace ProyectoFinalDINT
                 tbComment.Text += "\n---------------------------------------------------------\nAnxiety Score: ";
                 tbComment.Text += row["anxiety_score"].ToString();
                 lbScore.Text = row["anxiety_score"].ToString();
-
-                // Si necesitas mostrar la fecha de la sesión y el Anxiety Score, puedes usar Label o cualquier otro control adecuado.
-                // Por ejemplo, si tienes un Label para la fecha y el score, podrías hacer algo así:
-                // lblFechaSesion.Text = Convert.ToDateTime(row["fecha_sesion"]).ToString("dd/MM/yyyy");
-                // lblAnxietyScore.Text = row["anxiety_score"].ToString();
             }
 
             db.Disconnect();
         }
-
+        /// <summary>
+        /// Establece el formulario en modo de solo lectura, deshabilitando la edición.
+        /// </summary>
         private void EstablecerModoSoloLectura()
         {
             tbComment.ReadOnly = true; // Hace que tbComment sea de solo lectura
@@ -90,7 +104,7 @@ namespace ProyectoFinalDINT
         private void btSave_Click(object sender, EventArgs e)
         {
             int patientId = int.Parse(lbPatient_id.Text);
-            int anxietyScore = CalculateAnxietyScore(); // Implementa esta función para calcular el score basado en los ComboBox
+            int anxietyScore = CalculateAnxietyScore();
             DatabaseManager db = new DatabaseManager();
             db.Connect();
             db.CrearSesion(patientId, DateTime.Today, tbComment.Text, anxietyScore);
@@ -99,6 +113,10 @@ namespace ProyectoFinalDINT
             MessageBox.Show("Nota clinica guardada!");
             this.Close();
         }
+        /// <summary>
+        /// Calcula el puntaje de ansiedad basado en las selecciones de los ComboBox.
+        /// </summary>
+        /// <returns>Puntaje de ansiedad calculado.</returns>
         private int CalculateAnxietyScore()
         {
             int score = 0;
@@ -161,19 +179,19 @@ namespace ProyectoFinalDINT
         {
             int totalScore = 0;
 
-            // Calculate score from comboBox1
+            // Calculate score from ansiedad
             if (comboBox1.SelectedItem is string anxietySelection && int.TryParse(anxietySelection.Split('-').Last().Trim(), out int anxietyScore))
             {
                 totalScore += anxietyScore;
             }
 
-            // Calculate score from comboBox2
+            // Calculate score from sudoracion
             if (comboBox2.SelectedItem is string sweatSelection && int.TryParse(sweatSelection.Split('-').Last().Trim(), out int sweatScore))
             {
                 totalScore += sweatScore;
             }
 
-            // Calculate score from comboBox3
+            // Calculate score from frecuencia cardiaca
             if (comboBox3.SelectedItem is string heartRateSelection && int.TryParse(heartRateSelection.Split('-').Last().Trim(), out int heartRateScore))
             {
                 totalScore += heartRateScore;

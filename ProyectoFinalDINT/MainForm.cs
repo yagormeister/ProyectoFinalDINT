@@ -14,8 +14,14 @@ namespace ProyectoFinalDINT
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Controla si las columnas de botones han sido agregadas al DataGridView.
+        /// </summary>
         private bool columnsAdded = false;  // Agrega una variable de clase para rastrear si las columnas ya han sido agregadas
 
+        /// <summary>
+        /// Instancia del gestor de la base de datos para realizar operaciones de datos.
+        /// </summary>
         DatabaseManager db = new DatabaseManager();
 
 
@@ -83,7 +89,9 @@ namespace ProyectoFinalDINT
             }
         }
 
-
+        /// <summary>
+        /// Maneja el evento de clic en los PictureBox, mostrando los videos de la categoría seleccionada.
+        /// </summary>
         private void PictureBox_Click(object sender, EventArgs e)
         {
             if (sender is PictureBox pictureBox)
@@ -93,6 +101,10 @@ namespace ProyectoFinalDINT
             }
         }
 
+        /// <summary>
+        /// Muestra los videos correspondientes a la categoría seleccionada.
+        /// </summary>
+        /// <param name="categoria">La categoría de los videos a mostrar.</param>
         private void MostrarVideosDeCategoria(string categoria)
         {
             flowLayoutPanel1.Controls.Clear();
@@ -147,6 +159,9 @@ namespace ProyectoFinalDINT
         }
 
 
+        /// <summary>
+        /// Reproduce el video seleccionado enviándolo a las gafas VR.
+        /// </summary>
         private async void PictureBoxVideo_Click(object sender, EventArgs e)
         {
             Panel panel = sender as Panel;
@@ -182,7 +197,9 @@ namespace ProyectoFinalDINT
             }
         }
 
-
+        /// <summary>
+        /// Muestra el formulario de progreso del paciente al hacer clic en el gráfico.
+        /// </summary>
         private void chart1_Click(object sender, EventArgs e)
         {
             PatientProgressForm p = new PatientProgressForm();
@@ -196,7 +213,9 @@ namespace ProyectoFinalDINT
 
 
         }
-
+        /// <summary>
+        /// Maneja el evento de doble clic en una celda de la tabla de sesiones, permitiendo la edición de la sesión.
+        /// </summary>
         private void dgvSessions_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -212,6 +231,9 @@ namespace ProyectoFinalDINT
                 ActualizarChart();
             }
         }
+        /// <summary>
+        /// Maneja el evento de clic en una celda de la tabla de sesiones, permitiendo editar o eliminar la sesión seleccionada.
+        /// </summary>
         private void dgvSessions_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -246,7 +268,9 @@ namespace ProyectoFinalDINT
 
 
 
-        //METODO PARA OBTENER LOS DATOS PARA LA TABLA
+        /// <summary>
+        /// Carga y muestra los datos de progreso del paciente seleccionado en el gráfico de progreso.
+        /// </summary>
         private void CargarDatosEnProgressChart(int pacienteId)
         {
             List<Tuple<DateTime, int>> datosSesiones = db.ObtenerDatosSesionesPorPaciente(pacienteId);
@@ -259,6 +283,9 @@ namespace ProyectoFinalDINT
             }
         }
 
+        /// <summary>
+        /// Actualiza el gráfico y la tabla con la información del paciente seleccionado.
+        /// </summary>
         private void ActualizarChart()
         {
             //CARGA DE LOS DATOS DEL PACIENTE SELECCIONADO

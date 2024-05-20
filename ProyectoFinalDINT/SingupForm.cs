@@ -39,7 +39,7 @@ namespace ProyectoFinalDINT
         private void btnCreate_Click(object sender, EventArgs e)
         {
             DatabaseManager db = new DatabaseManager("localhost", "mindfieldvr", "root", "");
-            db.Connect();
+            try { db.Connect(); 
          
                 String user = tbNewUserName.Text;
                 String pass = tbNewUserPassword.Text;
@@ -64,16 +64,25 @@ namespace ProyectoFinalDINT
                     this.lbNewUserErrorPass.Visible = false;
                     String  query = "INSERT INTO UsuariosPrograma (username, password) VALUES (@user, @pass)";
                     String userLeido = db.SeleccionarPrimerResultado(db.LeerUsuario(user));
+                    MessageBox.Show("Usuario creado!");
+
+                try
+                {
                     db.CrearUsuario(user, pass);
+                }catch(Exception ex)
+                {
+                }
+                    
                     db.Disconnect();
 
-                    MessageBox.Show("Usuario creado!");
                     this.Close();
                 }
 
-                // Prevenir la inyección SQL utilizando parámetros
+            }
+            catch (Exception ex) {
 
             }
+        }
                     
         }
 

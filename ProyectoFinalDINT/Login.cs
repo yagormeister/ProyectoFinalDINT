@@ -73,7 +73,7 @@ namespace ProyectoFinalDINT
         private void btnLogin_Click(object sender, EventArgs e)
         {
             DatabaseManager db = new DatabaseManager();
-            db.Connect(); // Establece conexión con la base de datos.
+            try { db.Connect(); // Establece conexión con la base de datos.
             String usuarioLeido = db.SeleccionarPrimerResultado(db.LeerUsuario(tbName.Text)); // Lee el nombre de usuario de la base de datos.
             String passLeida = db.SeleccionarPrimerResultado(db.LeerPasswordDeUsuario(tbName.Text)); // Lee la contraseña del usuario de la base de datos.
 
@@ -91,7 +91,10 @@ namespace ProyectoFinalDINT
             {
                 MessageBox.Show("EL usuario no existe!"); // Muestra un mensaje de error si el usuario no existe o la contraseña es incorrecta.
             }
-            db.Disconnect(); // Cierra la conexión con la base de datos.
+                }
+            catch (Exception ex) {
+                db.Disconnect(); // Cierra la conexión con la base de datos.
+            }
         }
     }
 }

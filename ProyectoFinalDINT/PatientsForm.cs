@@ -30,6 +30,9 @@ namespace ProyectoFinalDINT
             InitializeComponent();
             filtroPacientesControl1.FilterChanged += FiltroPacientesControl_FilterChanged;
 
+            // Configura el modo de ajuste automático de columnas
+            dgvPatientTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
             // Agregar las columnas "Editar" y "Eliminar" al DataGridView
             DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
             editButtonColumn.HeaderText = "Editar";
@@ -118,6 +121,9 @@ namespace ProyectoFinalDINT
                 // Agregar columnas existentes
                 dgvPatientTable.DataSource = dt;
 
+                // Configura el modo de ajuste automático de columnas
+                dgvPatientTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
                 // Columna para Editar
                 DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
                 editButtonColumn.HeaderText = "Editar";
@@ -132,7 +138,6 @@ namespace ProyectoFinalDINT
                 deleteButtonColumn.UseColumnTextForButtonValue = true;
                 dgvPatientTable.Columns.Add(deleteButtonColumn);
 
-
             }
             catch (Exception ex)
             {
@@ -143,6 +148,7 @@ namespace ProyectoFinalDINT
                 db.Disconnect();
             }
         }
+
 
 
 
@@ -222,6 +228,11 @@ namespace ProyectoFinalDINT
                 editForm.ShowDialog();
                 actualizarTabla();
             }
+        }
+
+        private void dgvPatientTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

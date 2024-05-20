@@ -106,17 +106,20 @@ public class DatabaseManager
     /// <summary>
     /// Establece una conexión con la base de datos.
     /// </summary>
-    public void Connect()
+    public Boolean Connect()
     {
         try
         {
             connection.Open();
             Console.WriteLine("Conexión a la base de datos establecida.");
+            return true;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error al conectar con la base de datos: {ex.Message}");
             MessageBox.Show("Error en la base de datos!!");
+            throw new Exception("Error");
+            return false;
         }
     }
 

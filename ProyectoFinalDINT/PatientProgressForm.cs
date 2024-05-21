@@ -23,7 +23,7 @@ namespace ProyectoFinalDINT
         /// <summary>
         /// Opcional: ID de la sesión para cargar datos existentes.
         /// </summary>
-        public int? SesionID { get; set; } // Añade esta línea
+        public int? SesionID { get; set; }
 
         /// <summary>
         /// Constructor por defecto que inicializa el formulario y sus componentes.
@@ -93,6 +93,9 @@ namespace ProyectoFinalDINT
         {
             tbComment.ReadOnly = true; // Hace que tbComment sea de solo lectura
              btSave.Enabled = false;
+            comboBox1.Enabled = false;
+            comboBox2.Enabled = false;
+            comboBox3.Enabled = false;
         }
 
 
@@ -106,12 +109,16 @@ namespace ProyectoFinalDINT
             int patientId = int.Parse(lbPatient_id.Text);
             int anxietyScore = CalculateAnxietyScore();
             DatabaseManager db = new DatabaseManager();
-            db.Connect();
-            db.CrearSesion(patientId, DateTime.Today, tbComment.Text, anxietyScore);
-            db.ActualizarUltimaSesion(patientId, DateTime.Today);
-            db.Disconnect();
-            MessageBox.Show("Nota clinica guardada!");
-            this.Close();
+            if (db.Connect())
+            {
+                db.CrearSesion(patientId, DateTime.Today, tbComment.Text, anxietyScore);
+                db.ActualizarUltimaSesion(patientId, DateTime.Today);
+                db.Disconnect();
+                MessageBox.Show("Nota clinica guardada!");
+                this.Close();
+            }
+   
+            
         }
         /// <summary>
         /// Calcula el puntaje de ansiedad basado en las selecciones de los ComboBox.

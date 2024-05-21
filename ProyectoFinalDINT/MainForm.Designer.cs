@@ -35,9 +35,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lbName = new System.Windows.Forms.Label();
             this.lbSurname = new System.Windows.Forms.Label();
             this.lbDNI = new System.Windows.Forms.Label();
@@ -64,7 +64,7 @@
             // lbName
             // 
             this.lbName.AutoSize = true;
-            this.lbName.Location = new System.Drawing.Point(17, 33);
+            this.lbName.Location = new System.Drawing.Point(12, 20);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(44, 13);
             this.lbName.TabIndex = 0;
@@ -73,7 +73,7 @@
             // lbSurname
             // 
             this.lbSurname.AutoSize = true;
-            this.lbSurname.Location = new System.Drawing.Point(17, 66);
+            this.lbSurname.Location = new System.Drawing.Point(12, 53);
             this.lbSurname.Name = "lbSurname";
             this.lbSurname.Size = new System.Drawing.Size(49, 13);
             this.lbSurname.TabIndex = 1;
@@ -82,7 +82,7 @@
             // lbDNI
             // 
             this.lbDNI.AutoSize = true;
-            this.lbDNI.Location = new System.Drawing.Point(17, 96);
+            this.lbDNI.Location = new System.Drawing.Point(12, 83);
             this.lbDNI.Name = "lbDNI";
             this.lbDNI.Size = new System.Drawing.Size(26, 13);
             this.lbDNI.TabIndex = 2;
@@ -91,7 +91,7 @@
             // lbPatientNumber
             // 
             this.lbPatientNumber.AutoSize = true;
-            this.lbPatientNumber.Location = new System.Drawing.Point(12, 120);
+            this.lbPatientNumber.Location = new System.Drawing.Point(12, 107);
             this.lbPatientNumber.Name = "lbPatientNumber";
             this.lbPatientNumber.Size = new System.Drawing.Size(64, 13);
             this.lbPatientNumber.TabIndex = 3;
@@ -100,7 +100,7 @@
             // lbDOB
             // 
             this.lbDOB.AutoSize = true;
-            this.lbDOB.Location = new System.Drawing.Point(17, 145);
+            this.lbDOB.Location = new System.Drawing.Point(12, 129);
             this.lbDOB.Name = "lbDOB";
             this.lbDOB.Size = new System.Drawing.Size(93, 13);
             this.lbDOB.TabIndex = 4;
@@ -109,51 +109,56 @@
             // lbNameRecovered
             // 
             this.lbNameRecovered.AutoSize = true;
-            this.lbNameRecovered.Location = new System.Drawing.Point(63, 36);
+            this.lbNameRecovered.Location = new System.Drawing.Point(122, 20);
             this.lbNameRecovered.Name = "lbNameRecovered";
-            this.lbNameRecovered.Size = new System.Drawing.Size(0, 13);
+            this.lbNameRecovered.Size = new System.Drawing.Size(47, 13);
             this.lbNameRecovered.TabIndex = 5;
+            this.lbNameRecovered.Text = "dasadsd";
             // 
             // lbSurnameRecovered
             // 
             this.lbSurnameRecovered.AutoSize = true;
-            this.lbSurnameRecovered.Location = new System.Drawing.Point(66, 68);
+            this.lbSurnameRecovered.Location = new System.Drawing.Point(122, 52);
             this.lbSurnameRecovered.Name = "lbSurnameRecovered";
-            this.lbSurnameRecovered.Size = new System.Drawing.Size(0, 13);
+            this.lbSurnameRecovered.Size = new System.Drawing.Size(41, 13);
             this.lbSurnameRecovered.TabIndex = 6;
+            this.lbSurnameRecovered.Text = "asdasd";
             // 
             // lbDNIRecovered
             // 
             this.lbDNIRecovered.AutoSize = true;
-            this.lbDNIRecovered.Location = new System.Drawing.Point(66, 99);
+            this.lbDNIRecovered.Location = new System.Drawing.Point(122, 83);
             this.lbDNIRecovered.Name = "lbDNIRecovered";
-            this.lbDNIRecovered.Size = new System.Drawing.Size(0, 13);
+            this.lbDNIRecovered.Size = new System.Drawing.Size(52, 13);
             this.lbDNIRecovered.TabIndex = 7;
+            this.lbDNIRecovered.Text = "asdasdas";
             // 
             // lbPatientNumberRecovered
             // 
             this.lbPatientNumberRecovered.AutoSize = true;
-            this.lbPatientNumberRecovered.Location = new System.Drawing.Point(97, 120);
+            this.lbPatientNumberRecovered.Location = new System.Drawing.Point(122, 104);
             this.lbPatientNumberRecovered.Name = "lbPatientNumberRecovered";
-            this.lbPatientNumberRecovered.Size = new System.Drawing.Size(0, 13);
+            this.lbPatientNumberRecovered.Size = new System.Drawing.Size(52, 13);
             this.lbPatientNumberRecovered.TabIndex = 8;
+            this.lbPatientNumberRecovered.Text = "asdasdas";
             // 
             // lbDOBRecovered
             // 
             this.lbDOBRecovered.AutoSize = true;
-            this.lbDOBRecovered.Location = new System.Drawing.Point(66, 148);
+            this.lbDOBRecovered.Location = new System.Drawing.Point(122, 132);
             this.lbDOBRecovered.Name = "lbDOBRecovered";
-            this.lbDOBRecovered.Size = new System.Drawing.Size(0, 13);
+            this.lbDOBRecovered.Size = new System.Drawing.Size(52, 13);
             this.lbDOBRecovered.TabIndex = 9;
+            this.lbDOBRecovered.Text = "asdasdas";
             // 
             // dgvSessions
             // 
             this.dgvSessions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dgvSessions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvSessions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvSessions.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(247)))), ((int)(((byte)(166)))));
+            this.dgvSessions.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.dgvSessions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSessions.Location = new System.Drawing.Point(20, 297);
+            this.dgvSessions.Location = new System.Drawing.Point(20, 289);
             this.dgvSessions.MinimumSize = new System.Drawing.Size(600, 200);
             this.dgvSessions.MultiSelect = false;
             this.dgvSessions.Name = "dgvSessions";
@@ -174,24 +179,27 @@
             // 
             // progressChart
             // 
-            this.progressChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(195)))), ((int)(((byte)(0)))));
-            chartArea1.Name = "ChartArea1";
-            this.progressChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.progressChart.Legends.Add(legend1);
-            this.progressChart.Location = new System.Drawing.Point(729, 331);
+            this.progressChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.progressChart.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.HorizontalCenter;
+            this.progressChart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            chartArea2.Name = "ChartArea1";
+            this.progressChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.progressChart.Legends.Add(legend2);
+            this.progressChart.Location = new System.Drawing.Point(709, 309);
             this.progressChart.Name = "progressChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.progressChart.Series.Add(series1);
+            this.progressChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.progressChart.Series.Add(series2);
             this.progressChart.Size = new System.Drawing.Size(349, 161);
             this.progressChart.TabIndex = 21;
             this.progressChart.Text = "chart1";
             // 
             // btBack
             // 
-            this.btBack.Location = new System.Drawing.Point(833, 510);
+            this.btBack.Location = new System.Drawing.Point(833, 502);
             this.btBack.Name = "btBack";
             this.btBack.Size = new System.Drawing.Size(75, 23);
             this.btBack.TabIndex = 22;
@@ -201,7 +209,7 @@
             // 
             // btExit
             // 
-            this.btExit.Location = new System.Drawing.Point(951, 510);
+            this.btExit.Location = new System.Drawing.Point(951, 502);
             this.btExit.Name = "btExit";
             this.btExit.Size = new System.Drawing.Size(75, 23);
             this.btExit.TabIndex = 23;
@@ -212,7 +220,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(247)))), ((int)(((byte)(166)))));
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.flowLayoutPanel1.Location = new System.Drawing.Point(581, 16);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(477, 253);
@@ -220,7 +228,7 @@
             // 
             // btAtras
             // 
-            this.btAtras.Location = new System.Drawing.Point(904, 280);
+            this.btAtras.Location = new System.Drawing.Point(951, 280);
             this.btAtras.Name = "btAtras";
             this.btAtras.Size = new System.Drawing.Size(75, 23);
             this.btAtras.TabIndex = 25;
@@ -240,7 +248,7 @@
             // 
             // controlCitas1
             // 
-            this.controlCitas1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.controlCitas1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.controlCitas1.Enabled = false;
             this.controlCitas1.Location = new System.Drawing.Point(401, 145);
             this.controlCitas1.Name = "controlCitas1";
@@ -253,7 +261,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(247)))), ((int)(((byte)(166)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1090, 549);
             this.Controls.Add(this.btNuevaCita);
             this.Controls.Add(this.controlCitas1);

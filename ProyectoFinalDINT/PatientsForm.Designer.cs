@@ -47,18 +47,18 @@
             this.toolStripMenuItem1,
             this.toolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(212, 52);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(211, 24);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem1.Text = "toolStripMenuItem1";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(211, 24);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem2.Text = "toolStripMenuItem2";
             // 
             // dgvPatientTable
@@ -71,14 +71,13 @@
             this.dgvPatientTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(247)))), ((int)(((byte)(166)))));
             this.dgvPatientTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvPatientTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPatientTable.Location = new System.Drawing.Point(-16, 99);
-            this.dgvPatientTable.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvPatientTable.MaximumSize = new System.Drawing.Size(1218, 345);
+            this.dgvPatientTable.Location = new System.Drawing.Point(-12, 80);
+            this.dgvPatientTable.MaximumSize = new System.Drawing.Size(914, 280);
             this.dgvPatientTable.Name = "dgvPatientTable";
             this.dgvPatientTable.ReadOnly = true;
             this.dgvPatientTable.RowHeadersWidth = 51;
             this.dgvPatientTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPatientTable.Size = new System.Drawing.Size(1218, 345);
+            this.dgvPatientTable.Size = new System.Drawing.Size(914, 280);
             this.dgvPatientTable.TabIndex = 2;
             this.dgvPatientTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatientTable_CellClick);
             this.dgvPatientTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatientTable_CellContentClick);
@@ -86,10 +85,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1252, 399);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(939, 324);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "Añadir Paciente";
             this.button1.UseVisualStyleBackColor = true;
@@ -97,10 +95,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1252, 460);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(939, 374);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
+            this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 4;
             this.button2.Text = "Salir";
             this.button2.UseVisualStyleBackColor = true;
@@ -108,23 +105,22 @@
             // 
             // filtroPacientesControl1
             // 
-            this.filtroPacientesControl1.Location = new System.Drawing.Point(16, 60);
-            this.filtroPacientesControl1.Margin = new System.Windows.Forms.Padding(5);
+            this.filtroPacientesControl1.Location = new System.Drawing.Point(12, 49);
+            this.filtroPacientesControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.filtroPacientesControl1.Name = "filtroPacientesControl1";
-            this.filtroPacientesControl1.Size = new System.Drawing.Size(1023, 30);
+            this.filtroPacientesControl1.Size = new System.Drawing.Size(767, 24);
             this.filtroPacientesControl1.TabIndex = 9;
             // 
             // PatientsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(247)))), ((int)(((byte)(166)))));
-            this.ClientSize = new System.Drawing.Size(1397, 554);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(1048, 450);
             this.Controls.Add(this.filtroPacientesControl1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvPatientTable);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PatientsForm";
             this.Text = "Pacientes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatientsForm_FormClosing);

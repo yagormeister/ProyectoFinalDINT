@@ -118,7 +118,6 @@ public class DatabaseManager
         {
             Console.WriteLine($"Error al conectar con la base de datos: {ex.Message}");
             MessageBox.Show("Error en la base de datos!!");
-            throw new Exception("Error");
             return false;
         }
     }

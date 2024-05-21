@@ -57,7 +57,7 @@
             // lbName
             // 
             this.lbName.AutoSize = true;
-            this.lbName.Location = new System.Drawing.Point(40, 123);
+            this.lbName.Location = new System.Drawing.Point(37, 123);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(44, 13);
             this.lbName.TabIndex = 1;
@@ -66,7 +66,7 @@
             // lbSurname
             // 
             this.lbSurname.AutoSize = true;
-            this.lbSurname.Location = new System.Drawing.Point(43, 173);
+            this.lbSurname.Location = new System.Drawing.Point(37, 173);
             this.lbSurname.Name = "lbSurname";
             this.lbSurname.Size = new System.Drawing.Size(49, 13);
             this.lbSurname.TabIndex = 2;
@@ -75,7 +75,7 @@
             // lbDNI
             // 
             this.lbDNI.AutoSize = true;
-            this.lbDNI.Location = new System.Drawing.Point(43, 223);
+            this.lbDNI.Location = new System.Drawing.Point(37, 223);
             this.lbDNI.Name = "lbDNI";
             this.lbDNI.Size = new System.Drawing.Size(26, 13);
             this.lbDNI.TabIndex = 3;
@@ -84,7 +84,7 @@
             // lbDOB
             // 
             this.lbDOB.AutoSize = true;
-            this.lbDOB.Location = new System.Drawing.Point(43, 260);
+            this.lbDOB.Location = new System.Drawing.Point(37, 260);
             this.lbDOB.Name = "lbDOB";
             this.lbDOB.Size = new System.Drawing.Size(91, 13);
             this.lbDOB.TabIndex = 5;
@@ -93,7 +93,7 @@
             // lbComments
             // 
             this.lbComments.AutoSize = true;
-            this.lbComments.Location = new System.Drawing.Point(43, 308);
+            this.lbComments.Location = new System.Drawing.Point(37, 308);
             this.lbComments.Name = "lbComments";
             this.lbComments.Size = new System.Drawing.Size(65, 13);
             this.lbComments.TabIndex = 6;
@@ -101,21 +101,21 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(168, 110);
+            this.tbName.Location = new System.Drawing.Point(165, 110);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(100, 20);
             this.tbName.TabIndex = 7;
             // 
             // tbSurname
             // 
-            this.tbSurname.Location = new System.Drawing.Point(168, 160);
+            this.tbSurname.Location = new System.Drawing.Point(165, 160);
             this.tbSurname.Name = "tbSurname";
             this.tbSurname.Size = new System.Drawing.Size(100, 20);
             this.tbSurname.TabIndex = 8;
             // 
             // tbDNI
             // 
-            this.tbDNI.Location = new System.Drawing.Point(168, 210);
+            this.tbDNI.Location = new System.Drawing.Point(165, 210);
             this.tbDNI.Name = "tbDNI";
             this.tbDNI.Size = new System.Drawing.Size(100, 20);
             this.tbDNI.TabIndex = 9;
@@ -129,7 +129,7 @@
             // 
             // tbComments
             // 
-            this.tbComments.Location = new System.Drawing.Point(168, 300);
+            this.tbComments.Location = new System.Drawing.Point(165, 300);
             this.tbComments.Multiline = true;
             this.tbComments.Name = "tbComments";
             this.tbComments.Size = new System.Drawing.Size(376, 127);
@@ -139,7 +139,7 @@
             // 
             this.btAdd.Location = new System.Drawing.Point(599, 308);
             this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(120, 24);
+            this.btAdd.Size = new System.Drawing.Size(75, 23);
             this.btAdd.TabIndex = 13;
             this.btAdd.Text = "Añadir Paciente";
             this.btAdd.UseVisualStyleBackColor = true;
@@ -158,7 +158,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 71);
+            this.label1.Location = new System.Drawing.Point(37, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 15;
@@ -178,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(247)))), ((int)(((byte)(166)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lbPatientId);
             this.Controls.Add(this.label1);

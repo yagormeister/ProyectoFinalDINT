@@ -49,7 +49,6 @@ namespace ProyectoFinalDINT
                 ReshowDelay = 500,
                 ShowAlways = true
             };
-
             // Establece los ToolTips para los controles
             toolTip1.SetToolTip(this.btAtras, "Volver a la pantalla anterior.");
             toolTip1.SetToolTip(this.btAddNewProgres, "Añadir un nuevo registro de progreso para el paciente.");

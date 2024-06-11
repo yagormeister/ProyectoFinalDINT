@@ -174,7 +174,7 @@ namespace ProyectoFinalDINT
                     ProcessStartInfo psi = new ProcessStartInfo
                     {
                         FileName = "powershell",
-                        Arguments = $"-Command \"Start-Process 'adb' -ArgumentList 'shell am start -a android.intent.action.VIEW -d \"{videoPath}\" -t \"video/mp4\"'\"",
+                        Arguments = $"-Command \"Start-Process 'adb' -ArgumentList 'shell am start -a android.intent.action.VIEW -d \\\"{videoPath}\\\" -t \\\"video/mp4\\\"'\"",
                         UseShellExecute = false,
                         CreateNoWindow = true,
                         RedirectStandardOutput = true,
@@ -184,9 +184,18 @@ namespace ProyectoFinalDINT
                     using (Process process = new Process { StartInfo = psi })
                     {
                         process.Start();
-                        MessageBox.Show("Video enviado a las gafas VR");
+                        string output = await process.StandardOutput.ReadToEndAsync();
+                        string error = await process.StandardError.ReadToEndAsync();
                         process.WaitForExit();
-                        // Handle output and errors if needed
+
+                        if (process.ExitCode == 0)
+                        {
+                            MessageBox.Show("Video enviado a las gafas VR");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Error launching video: {error}");
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -195,6 +204,9 @@ namespace ProyectoFinalDINT
                 }
             }
         }
+
+
+
 
         /// <summary>
         /// Muestra el formulario de progreso del paciente al hacer clic en el gráfico.
